@@ -1,0 +1,10 @@
+# Backups
+inciensos_backup_*.html
+*.bak
+*.tmp
+*.log
+
+# Temp / Agent files
+.system_generated/
+scratch/
+.tempmediaStorage/

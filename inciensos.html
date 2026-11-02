@@ -1,0 +1,2778 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elqui Armonías | Grimorio & Catálogo de Inciensos Sagrados</title>
+  <meta name="description" content="Catálogo exclusivo de inciensos sagrados artesanales Elqui Armonías en tubos, pouches y sacos de arpillera. Explora por colección, fotos reales, best sellers o ingredientes botánicos.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo_elqui_armonias.png">
+
+  <!-- Google Fonts: Cinzel Decorative, Cinzel & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome 6.5 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-dark: #051414;
+      --bg-darker: #030b0b;
+      --card-bg: rgba(12, 34, 33, 0.88);
+      --card-border: rgba(212, 175, 55, 0.28);
+      --card-border-hover: rgba(243, 229, 171, 0.75);
+      --gold-primary: #d4af37;
+      --gold-light: #f3e5ab;
+      --gold-dark: #997316;
+      --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f7ecc2 45%, #b58d1b 100%);
+      --gold-glow: rgba(212, 175, 55, 0.35);
+      --teal-accent: #195350;
+      --teal-light: #2eaca1;
+      --teal-glow: rgba(46, 172, 161, 0.3);
+      --text-muted-mystic: #a2c2c0;
+      --font-mystic: 'Cinzel', serif;
+      --font-ornate: 'Cinzel Decorative', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: #f1f8f7;
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Background Canvas for smoke and stardust */
+    #smokeCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.75;
+    }
+
+    .relative-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Ambient mystical background gradient */
+    .mystic-glow-bg {
+      position: fixed;
+      top: -25%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1100px;
+      height: 1100px;
+      background: radial-gradient(circle, rgba(25, 83, 80, 0.4) 0%, rgba(212, 175, 55, 0.08) 40%, rgba(5, 20, 20, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Header & Navigation */
+    .navbar-mystic {
+      background: rgba(3, 11, 11, 0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.28);
+      padding: 0.85rem 1.2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    .brand-logo-img {
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.5));
+      transition: transform 0.4s ease;
+    }
+    .brand-logo-img:hover {
+      transform: rotate(6deg) scale(1.05);
+    }
+
+    .brand-title {
+      font-family: var(--font-mystic);
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      font-size: 1.35rem;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-size: 0.75rem;
+      letter-spacing: 1.8px;
+      color: var(--teal-light);
+      text-transform: uppercase;
+      font-weight: 600;
+      display: block;
+    }
+
+    /* Sound Bell Toggle */
+    .sound-toggle-btn {
+      background: rgba(25, 83, 80, 0.35);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: var(--gold-light);
+      border-radius: 30px;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.25s ease;
+    }
+    .sound-toggle-btn:hover, .sound-toggle-btn.active {
+      background: var(--gold-primary);
+      color: #030b0b;
+      border-color: var(--gold-light);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      text-align: center;
+      padding: 3.5rem 1rem 2rem;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: var(--gold-light);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0.45rem 1.25rem;
+      border-radius: 50px;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+    }
+
+    .hero-title {
+      font-family: var(--font-mystic);
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.2;
+      color: #ffffff;
+      margin-bottom: 1.1rem;
+      letter-spacing: 1px;
+    }
+
+    .hero-title span {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 35px rgba(212, 175, 55, 0.3);
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted-mystic);
+      line-height: 1.7;
+      max-width: 780px;
+      margin: 0 auto 2.2rem;
+    }
+
+    /* 3 APARTADOS CARD */
+    .sketch-nav-card {
+      background: rgba(10, 30, 29, 0.75);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 20px;
+      padding: 1.2rem;
+      backdrop-filter: blur(12px);
+      margin-bottom: 2.2rem;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), inset 0 0 25px rgba(25, 83, 80, 0.2);
+    }
+
+    .tab-sketch-btn {
+      background: rgba(5, 20, 20, 0.6);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 14px;
+      padding: 1.25rem 1rem;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+      text-align: center;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tab-sketch-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+
+    .tab-sketch-btn:hover {
+      background: rgba(25, 75, 72, 0.5);
+      border-color: rgba(212, 175, 55, 0.6);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 20px var(--teal-glow);
+    }
+
+    .tab-sketch-btn.active {
+      background: linear-gradient(145deg, rgba(25, 83, 80, 0.85) 0%, rgba(14, 45, 43, 0.95) 100%);
+      border-color: var(--gold-primary);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px var(--gold-glow);
+      transform: translateY(-4px);
+    }
+
+    .tab-sketch-btn.active::before {
+      background: var(--gold-gradient);
+    }
+
+    .tab-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+      font-size: 1.35rem;
+      color: var(--gold-light);
+      transition: transform 0.3s ease;
+    }
+
+    .tab-sketch-btn:hover .tab-icon-box,
+    .tab-sketch-btn.active .tab-icon-box {
+      transform: scale(1.12) rotate(5deg);
+      background: var(--gold-gradient);
+      color: #051414;
+    }
+
+    .tab-sketch-title {
+      font-family: var(--font-mystic);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.5px;
+    }
+
+    .tab-sketch-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted-mystic);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* Filter Bar by Formato */
+    .filter-bar-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .filter-pill {
+      background: rgba(8, 25, 24, 0.7);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      color: #d1e5e3;
+      padding: 0.5rem 1.15rem;
+      border-radius: 30px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .filter-pill:hover {
+      background: rgba(25, 83, 80, 0.6);
+      border-color: var(--gold-primary);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .filter-pill.active {
+      background: var(--gold-gradient);
+      color: #030b0b;
+      font-weight: 700;
+      border-color: var(--gold-light);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* Search Bar */
+    .search-mystic-wrapper {
+      position: relative;
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .search-mystic-input {
+      width: 100%;
+      background: rgba(6, 20, 19, 0.8);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 35px;
+      padding: 0.85rem 1.4rem 0.85rem 3.1rem;
+      color: #ffffff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .search-mystic-input:focus {
+      border-color: var(--gold-primary);
+      background: rgba(8, 26, 25, 0.95);
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+    }
+
+    .search-mystic-icon {
+      position: absolute;
+      left: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold-light);
+      font-size: 1.05rem;
+      pointer-events: none;
+    }
+
+    /* Product Card Styling */
+    .card-incienso {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-incienso:hover {
+      border-color: var(--card-border-hover);
+      transform: translateY(-6px);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(212, 175, 55, 0.25);
+    }
+
+    .product-img-wrapper {
+      position: relative;
+      height: 250px;
+      width: 100%;
+      overflow: hidden;
+      background: #020808;
+      cursor: pointer;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .card-incienso:hover .product-img {
+      transform: scale(1.08);
+    }
+
+    .product-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(3, 11, 11, 0.1) 40%, rgba(12, 34, 33, 0.95) 100%);
+      pointer-events: none;
+    }
+
+    .product-format-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(3, 11, 11, 0.85);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-light);
+      font-size: 0.73rem;
+      font-weight: 700;
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(8px);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .product-bestseller-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: linear-gradient(135deg, #b91c1c, #dc2626);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.5);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .product-photos-badge {
+      position: absolute;
+      bottom: 12px;
+      right: 14px;
+      background: rgba(25, 83, 80, 0.9);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: #f3e5ab;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 15px;
+      backdrop-filter: blur(6px);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .card-body-incienso {
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-code-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-code {
+      font-size: 0.78rem;
+      color: var(--gold-light);
+      font-weight: 700;
+      letter-spacing: 0.8px;
+    }
+
+    .product-amulet-tag {
+      font-size: 0.72rem;
+      color: #9fe0db;
+      background: rgba(25, 83, 80, 0.45);
+      padding: 0.2rem 0.55rem;
+      border-radius: 12px;
+      border: 1px solid rgba(46, 172, 161, 0.25);
+    }
+
+    .product-title {
+      font-family: var(--font-mystic);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .product-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted-mystic);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Fragrance variants list */
+    .fragrance-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-bottom: 1.15rem;
+      flex-grow: 1;
+    }
+
+    .fragrance-item {
+      background: rgba(5, 18, 18, 0.65);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: 10px;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.83rem;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .fragrance-item:hover {
+      background: rgba(25, 75, 72, 0.55);
+      border-color: rgba(212, 175, 55, 0.45);
+      transform: translateX(4px);
+    }
+
+    .fragrance-name {
+      font-weight: 700;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .fragrance-notes {
+      font-size: 0.77rem;
+      color: #c5dedd;
+    }
+
+    /* Ingredient badges */
+    .ingredient-badges-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .ing-badge {
+      background: rgba(25, 83, 80, 0.4);
+      border: 1px solid rgba(46, 172, 161, 0.3);
+      color: #d1eae8;
+      font-size: 0.74rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .ing-badge:hover {
+      background: var(--gold-primary);
+      border-color: var(--gold-primary);
+      color: #030b0b;
+      font-weight: 700;
+      transform: scale(1.05);
+    }
+
+    /* Action Buttons */
+    .btn-mystic-primary {
+      background: var(--gold-gradient);
+      color: #030b0b;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      padding: 0.65rem 1rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+    }
+
+    .btn-mystic-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.45);
+      color: #030b0b;
+    }
+
+    .btn-mystic-outline {
+      background: transparent;
+      color: var(--gold-light);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 12px;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      width: 100%;
+    }
+
+    .btn-mystic-outline:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold-primary);
+      color: #fff;
+    }
+
+    /* MODAL LIBRO GUÍA / GRIMORIO & BACKDROP GLASS */
+    .modal-backdrop {
+      background-color: rgba(2, 9, 9, 0.75) !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      z-index: 1050 !important;
+    }
+    .modal-backdrop.show {
+      opacity: 1 !important;
+    }
+
+    .modal-grimorio {
+      z-index: 1055 !important;
+    }
+
+    .modal.fade .modal-dialog {
+      transition: transform 0.28s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.28s ease-out;
+      transform: scale(0.96) translateY(-14px);
+      opacity: 0;
+    }
+    .modal.show .modal-dialog {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+
+    .modal-grimorio .modal-content {
+      background: #081e1d !important;
+      border: 1.5px solid var(--gold-primary) !important;
+      border-radius: 24px !important;
+      box-shadow: 0 25px 85px rgba(0, 0, 0, 0.95), 0 0 35px rgba(212, 175, 55, 0.35) !important;
+      color: #edf5f4;
+      overflow: hidden;
+    }
+
+    .grimorio-header {
+      background: linear-gradient(135deg, #0e3734 0%, #061817 100%);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+      padding: 1.5rem 2rem;
+      position: relative;
+    }
+
+    .grimorio-book-corner {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-top: 55px solid var(--gold-primary);
+      border-left: 55px solid transparent;
+    }
+
+    .grimorio-title {
+      font-family: var(--font-mystic);
+      color: var(--gold-light);
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 0.2rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .grimorio-box-card {
+      background: rgba(14, 43, 41, 0.88);
+      border: 1px solid rgba(212, 175, 55, 0.32);
+      border-radius: 14px;
+      padding: 1.1rem;
+      color: #f1f8f7;
+      transition: all 0.3s ease;
+    }
+    .grimorio-box-card:hover {
+      border-color: var(--gold-primary);
+      background: rgba(19, 58, 55, 0.95);
+    }
+
+    .grimorio-variety-card {
+      background: rgba(12, 38, 36, 0.88);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+      transition: all 0.25s ease;
+    }
+    .grimorio-variety-card:hover {
+      background: rgba(18, 55, 52, 0.95);
+      border-color: var(--gold-primary);
+      transform: translateX(4px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Grimorio Tabs */
+    .grimorio-nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+      padding: 0 1.5rem;
+      background: rgba(4, 15, 14, 0.7);
+    }
+
+    .grimorio-tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted-mystic);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .grimorio-tab-btn:hover {
+      color: #fff;
+    }
+
+    .grimorio-tab-btn.active {
+      color: var(--gold-light);
+      border-bottom-color: var(--gold-primary);
+      font-weight: 700;
+    }
+
+    /* Photo Gallery in Grimorio */
+    .grimorio-gallery-thumb {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid rgba(212, 175, 55, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .grimorio-gallery-thumb:hover {
+      border-color: var(--gold-light);
+      transform: scale(1.05);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Ingredient Explorer Grid */
+    .ingredient-explorer-card {
+      background: rgba(10, 31, 30, 0.8);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 16px;
+      padding: 1.15rem 0.8rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .ingredient-explorer-card:hover,
+    .ingredient-explorer-card.selected {
+      background: rgba(25, 75, 72, 0.85);
+      border-color: var(--gold-primary);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+    }
+
+    .ing-icon-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.65rem;
+      font-size: 1.35rem;
+      color: var(--gold-light);
+      transition: all 0.3s ease;
+    }
+
+    .ingredient-explorer-card:hover .ing-icon-circle,
+    .ingredient-explorer-card.selected .ing-icon-circle {
+      transform: scale(1.15) rotate(10deg);
+      background: var(--gold-gradient);
+      color: #030b0b;
+    }
+
+    .ing-card-title {
+      font-family: var(--font-mystic);
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+
+    .ing-card-count {
+      font-size: 0.76rem;
+      color: var(--text-muted-mystic);
+    }
+
+    /* Floating Mystic Contact & Cart Suite */
+    .floating-mystic-dock {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 1040;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+    }
+
+    /* Completely hide floating dock when ANY modal or offcanvas is open */
+    body.modal-open .floating-mystic-dock,
+    body.offcanvas-open .floating-mystic-dock,
+    body:has(.modal.show) .floating-mystic-dock,
+    body:has(.offcanvas.show) .floating-mystic-dock {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      visibility: hidden !important;
+      transform: translateY(30px) scale(0.85) !important;
+    }
+
+    .floating-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      backdrop-filter: blur(10px);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .floating-action-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      color: #fff;
+    }
+
+    .floating-whatsapp-btn {
+      background: #25D366;
+      color: #ffffff;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.45);
+      border-color: rgba(255, 255, 255, 0.4);
+      animation: pulse-wa 2.5s infinite;
+    }
+    .floating-whatsapp-btn:hover {
+      box-shadow: 0 15px 35px rgba(37, 211, 102, 0.75);
+      color: #fff;
+    }
+
+    .floating-instagram-btn {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #ffffff;
+      box-shadow: 0 10px 30px rgba(220, 39, 67, 0.4);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    .floating-instagram-btn:hover {
+      box-shadow: 0 15px 35px rgba(220, 39, 67, 0.75);
+      color: #fff;
+    }
+
+    .floating-cart-btn {
+      background: linear-gradient(135deg, #092120 0%, #164643 100%);
+      color: var(--gold-light);
+      border-color: var(--gold-primary);
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.35);
+      cursor: pointer;
+    }
+    .floating-cart-btn:hover {
+      border-color: #fff;
+      color: #fff;
+      box-shadow: 0 15px 35px rgba(212, 175, 55, 0.6);
+    }
+
+    @keyframes pulse-wa {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+      70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+
+    .cart-badge-count {
+      background: #030b0b;
+      color: var(--gold-light);
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+      border: 1px solid var(--gold-primary);
+    }
+
+    /* Hero Contact Ribbon */
+    .hero-contact-ribbon {
+      margin: 1.2rem auto 2.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .badge-contact-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: 50px;
+      background: rgba(12, 34, 33, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: #e5edea;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .badge-contact-pill:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold-light);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
+    }
+
+    .whatsapp-pill:hover {
+      border-color: #25D366;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    .instagram-pill:hover {
+      border-color: #e1306c;
+      box-shadow: 0 6px 20px rgba(225, 48, 108, 0.4);
+    }
+
+    /* Footer Contact Cards */
+    .contact-box-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.1rem 1.4rem;
+      background: rgba(12, 34, 33, 0.75);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      border-radius: 16px;
+      text-decoration: none;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+
+    .contact-box-card:hover {
+      border-color: var(--gold-primary);
+      background: rgba(18, 52, 50, 0.95);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+    }
+
+    @media (max-width: 576px) {
+      .floating-mystic-dock {
+        bottom: 15px;
+        right: 15px;
+        gap: 8px;
+      }
+      .floating-action-btn .floating-label-text {
+        display: none;
+      }
+      .floating-action-btn {
+        padding: 0.7rem;
+        border-radius: 50%;
+        width: 46px;
+        height: 46px;
+        justify-content: center;
+      }
+    }
+
+    /* Cart Offcanvas */
+    .offcanvas-mystic {
+      background: #061615;
+      border-left: 2px solid var(--gold-primary);
+      color: #e5edea;
+    }
+
+    .offcanvas-mystic .offcanvas-header {
+      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+      background: rgba(12, 34, 33, 0.9);
+    }
+
+    /* Lightbox Modal for Fullsize Photo Preview */
+    #photoLightboxModal .modal-content {
+      background: rgba(2, 6, 6, 0.96);
+      border: 1px solid var(--gold-primary);
+      border-radius: 20px;
+    }
+
+    /* Footer */
+    .footer-mystic {
+      background: #020707;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 3rem 1rem 2rem;
+      margin-top: 4rem;
+      color: var(--text-muted-mystic);
+      font-size: 0.9rem;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #020707;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #195350;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gold-primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Smoke & Particle Canvas -->
+  <canvas id="smokeCanvas"></canvas>
+  <div class="mystic-glow-bg"></div>
+
+  <div class="relative-content">
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-mystic sticky-top">
+      <div class="container d-flex justify-content-between align-items-center">
+        <a class="navbar-brand d-flex align-items-center gap-3 text-decoration-none" href="#">
+          <img src="assets/logo_elqui_armonias.png" alt="Elqui Armonías Logo" class="brand-logo-img">
+          <div>
+            <h1 class="brand-title">ELQUI ARMONÍAS</h1>
+            <span class="brand-subtitle">Inciensos Sagrados • Alquimia Natural</span>
+          </div>
+        </a>
+
+        <div class="d-flex align-items-center gap-2 gap-md-3">
+          <!-- Audio ambience toggle button -->
+          <button class="sound-toggle-btn d-none d-sm-inline-flex" id="soundToggleBtn" onclick="toggleMysticSound()" title="Tocar Cuenco Tibetano Armónico">
+            <i class="fa-solid fa-bell"></i> <span id="soundBtnText">Cuenco 432Hz</span>
+          </button>
+
+          <!-- Instagram Button -->
+          <a href="https://www.instagram.com/ac_inciensosvicuna/" target="_blank" class="btn btn-mystic-outline" title="Instagram Oficial @ac_inciensosvicuna">
+            <i class="fa-brands fa-instagram text-danger fs-5"></i> <span class="d-none d-md-inline ms-1">@ac_inciensosvicuna</span>
+          </a>
+
+          <button class="btn btn-mystic-outline d-none d-md-inline-flex" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+            <i class="fa-solid fa-feather-pointed text-warning"></i> Mi Ritual (<span class="cart-total-badge">0</span>)
+          </button>
+          
+          <!-- WhatsApp Contact Button -->
+          <a href="https://wa.me/56933899501?text=Hola%20AC%20Inciensos%20Vicu%C3%B1a,%20quisiera%20consultar%20por%20su%20cat%C3%A1logo%20de%20inciensos" target="_blank" class="btn btn-mystic-primary" title="Pedir por WhatsApp +56 9 3389 9501">
+            <i class="fa-brands fa-whatsapp fs-5 text-success"></i> <span class="d-none d-sm-inline">+56 9 3389 9501</span><span class="d-inline d-sm-none">WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section container">
+      <div class="hero-badge animate-hero">
+        <i class="fa-solid fa-sparkles"></i> 30 Varitas con Porta-Incienso • Hecho en India • Alta Pureza
+      </div>
+      <h2 class="hero-title animate-hero">
+        Alquimia de Aromas Sagrados <br><span>Catálogo & Grimorio Sagrado</span>
+      </h2>
+      <p class="hero-subtitle animate-hero">
+        Explora nuestras colecciones en <strong>Tubos de Colección</strong>, <strong>Pouches de Papel</strong> y los nuevos <strong>Sacos de Arpillera Karma</strong> con amuletos tallados. Fotos reales de nuestra tienda, ingredientes botánicos y fórmulas rituales.
+      </p>
+
+      <!-- Direct Contact Quick Ribbon -->
+      <div class="hero-contact-ribbon animate-hero">
+        <a href="https://wa.me/56933899501?text=Hola%20AC%20Inciensos%20Vicu%C3%B1a,%20quisiera%20consultar%20por%20sus%20inciensos" target="_blank" class="badge-contact-pill whatsapp-pill">
+          <i class="fa-brands fa-whatsapp fs-5 text-success"></i>
+          <span><strong>WhatsApp:</strong> +56 9 3389 9501</span>
+        </a>
+        <a href="https://www.instagram.com/ac_inciensosvicuna/" target="_blank" class="badge-contact-pill instagram-pill">
+          <i class="fa-brands fa-instagram fs-5 text-danger"></i>
+          <span><strong>Instagram:</strong> @ac_inciensosvicuna</span>
+        </a>
+        <span class="badge-contact-pill location-pill">
+          <i class="fa-solid fa-location-dot fs-6 text-warning"></i>
+          <span>Vicuña, Valle de Elqui</span>
+        </span>
+      </div>
+
+      <!-- 3 APARTADOS PRINCIPALES -->
+      <div class="sketch-nav-card animate-hero">
+        <div class="row g-3 justify-content-center">
+          
+          <!-- Apartado 1: Libro / Catálogo Guía -->
+          <div class="col-md-4">
+            <div class="tab-sketch-btn active" id="tabBtnLibro" onclick="switchApartado('libro')">
+              <div class="tab-icon-box">
+                <i class="fa-solid fa-book-open"></i>
+              </div>
+              <h3 class="tab-sketch-title">1. Libro & Grimorio Guía</h3>
+              <p class="tab-sketch-desc">Catálogo completo con código, formato, fotos reales de tienda e ingredientes botánicos.</p>
+            </div>
+          </div>
+
+          <!-- Apartado 2: Best Seller -->
+          <div class="col-md-4">
+            <div class="tab-sketch-btn" id="tabBtnBestSeller" onclick="switchApartado('bestseller')">
+              <div class="tab-icon-box">
+                <i class="fa-solid fa-fire-flame-curved text-warning"></i>
+              </div>
+              <h3 class="tab-sketch-title">2. Best Sellers</h3>
+              <p class="tab-sketch-desc">Las colecciones más aclamadas por su fijación, belleza ritual y poder energético.</p>
+            </div>
+          </div>
+
+          <!-- Apartado 3: Ingredientes en Sí -->
+          <div class="col-md-4">
+            <div class="tab-sketch-btn" id="tabBtnIngredientes" onclick="switchApartado('ingredientes')">
+              <div class="tab-icon-box">
+                <i class="fa-solid fa-mortar-pestle text-success"></i>
+              </div>
+              <h3 class="tab-sketch-title">3. Por Ingredientes</h3>
+              <p class="tab-sketch-desc">Filtra por notas puras: Canela, Frutilla, Lavanda, Oudh, Jazmín, Vainilla y más.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Formato Selector (Tubo / Pouch / Arpillera / Puro) -->
+      <div class="d-flex flex-column align-items-center mb-3">
+        <div class="small text-uppercase tracking-wide text-warning mb-2 fw-bold">
+          <i class="fa-solid fa-layer-group me-1"></i> Filtrar por Formato:
+        </div>
+        <div class="filter-bar-container">
+          <button class="filter-pill active" onclick="filterByFormat('all', this)">
+            <i class="fa-solid fa-gem"></i> Todos los Formatos
+          </button>
+          <button class="filter-pill" onclick="filterByFormat('Tubo', this)">
+            <i class="fa-solid fa-vial"></i> Tubo Cilíndrico
+          </button>
+          <button class="filter-pill" onclick="filterByFormat('Pouch', this)">
+            <i class="fa-solid fa-envelope-open-text"></i> Pouch Artesanal
+          </button>
+          <button class="filter-pill" onclick="filterByFormat('Arpillera', this)">
+            <i class="fa-solid fa-scroll"></i> Saco de Arpillera (Karma)
+          </button>
+          <button class="filter-pill" onclick="filterByFormat('Puro', this)">
+            <i class="fa-solid fa-seedling"></i> Esencia Pura (Frutilla, etc.)
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Search Bar -->
+      <div class="search-mystic-wrapper">
+        <i class="fa-solid fa-magnifying-glass search-mystic-icon"></i>
+        <input type="text" id="searchInput" class="search-mystic-input" placeholder="Buscar por incienso, código (ej: 5267, BM104, SR53), ingrediente o intención..." oninput="handleSearch(this.value)">
+      </div>
+
+    </header>
+
+    <!-- MAIN VIEWS CONTAINER -->
+    <main class="container pb-5">
+
+      <!-- VIEW 1: LIBRO DE INCIENSOS / CATÁLOGO COMPLETO -->
+      <section id="viewLibro" class="catalog-view">
+        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2 border-secondary border-opacity-25">
+          <div>
+            <h3 class="font-mystic text-warning mb-1">
+              <i class="fa-solid fa-book-bookmark me-2"></i>Catálogo & Grimorio Sagrado
+            </h3>
+            <span class="text-muted small">Haz clic en <strong>"Ver en el Libro Guía"</strong> o en la foto para abrir su ficha mística, fotos reales e ingredientes.</span>
+          </div>
+          <div class="text-end text-muted small">
+            Mostrando <span id="productCounter" class="fw-bold text-white">0</span> colecciones
+          </div>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div class="row g-4" id="productsGrid">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </section>
+
+      <!-- VIEW 2: BEST SELLERS (Los más vendidos y pedidos) -->
+      <section id="viewBestSeller" class="catalog-view d-none">
+        <div class="text-center mb-4">
+          <div class="hero-badge bg-warning bg-opacity-10 border-warning text-warning">
+            <i class="fa-solid fa-crown me-1"></i> Favoritos de Nuestra Tienda
+          </div>
+          <h3 class="font-mystic text-white">Los Más Vendidos • Aromas Inolvidables</h3>
+          <p class="text-muted small max-w-600 mx-auto">
+            Selección especial de inciensos con mayor rotación por su fijación duradera, mística, amuletos incluidos y equilibrio energético.
+          </p>
+        </div>
+
+        <div class="row g-4" id="bestsellerGrid">
+          <!-- Populated via JS -->
+        </div>
+      </section>
+
+      <!-- VIEW 3: EXPLORADOR POR INGREDIENTES EN SÍ -->
+      <section id="viewIngredientes" class="catalog-view d-none">
+        <div class="text-center mb-4">
+          <div class="hero-badge bg-success bg-opacity-10 border-success text-success">
+            <i class="fa-solid fa-leaf me-1"></i> Alquimia Botánica
+          </div>
+          <h3 class="font-mystic text-white">Explora por Ingrediente y Esencia</h3>
+          <p class="text-muted small max-w-600 mx-auto">
+            Elige un ingrediente natural para ver todos los inciensos que lo contienen, o descubre nuestras esencias puras como <strong>Frutilla Silvestre</strong>.
+          </p>
+        </div>
+
+        <!-- Ingredients Interactive Buttons Grid -->
+        <div class="row g-3 mb-5" id="ingredientCardsGrid">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Filtered results by ingredient header -->
+        <div id="ingredientFilteredHeader" class="d-none mb-3">
+          <div class="alert alert-dark bg-dark bg-opacity-75 border-warning d-flex justify-content-between align-items-center">
+            <div>
+              <i class="fa-solid fa-filter text-warning me-2"></i>
+              Mostrando inciensos que contienen: <strong id="activeIngredientName" class="text-warning">...</strong>
+            </div>
+            <button class="btn btn-sm btn-outline-light" onclick="clearIngredientFilter()">
+              <i class="fa-solid fa-xmark me-1"></i> Quitar Filtro
+            </button>
+          </div>
+        </div>
+
+        <div class="row g-4" id="ingredientResultsGrid">
+          <!-- Filtered items will show here -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-mystic">
+      <div class="container text-center">
+        <img src="assets/logo_elqui_armonias.png" alt="Elqui Armonías" style="width: 70px; height: 70px; object-fit: contain;" class="mb-3">
+        <h4 class="brand-title mb-1">ELQUI ARMONÍAS</h4>
+        <span class="text-warning fw-bold small d-block mb-2">AC Inciensos Vicuña</span>
+        <p class="text-muted small mb-4">
+          Inciensos Sagrados • Valle de Elqui (Vicuña) & Tradición de la India • Conexión, Paz & Bienestar
+        </p>
+
+        <!-- Direct Contact Cards Row -->
+        <div class="row justify-content-center g-3 mb-4">
+          <div class="col-sm-6 col-md-5 col-lg-4">
+            <a href="https://wa.me/56933899501?text=Hola%20AC%20Inciensos%20Vicu%C3%B1a,%20quisiera%20hacer%20una%20consulta" target="_blank" class="contact-box-card">
+              <i class="fa-brands fa-whatsapp fs-2 text-success"></i>
+              <div>
+                <strong class="d-block text-light" style="font-size: 0.95rem;">WhatsApp Directo</strong>
+                <span class="text-warning font-monospace small">+56 9 3389 9501</span>
+                <small class="d-block text-muted" style="font-size: 0.72rem;">Atención & pedidos personalizados</small>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-5 col-lg-4">
+            <a href="https://www.instagram.com/ac_inciensosvicuna/" target="_blank" class="contact-box-card">
+              <i class="fa-brands fa-instagram fs-2 text-danger"></i>
+              <div>
+                <strong class="d-block text-light" style="font-size: 0.95rem;">Instagram Oficial</strong>
+                <span class="text-warning font-monospace small">@ac_inciensosvicuna</span>
+                <small class="d-block text-muted" style="font-size: 0.72rem;">Novedades, fotos & rituales</small>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center flex-wrap gap-3 mb-4">
+          <a href="#viewLibro" onclick="switchApartado('libro')" class="text-warning text-decoration-none small">
+            <i class="fa-solid fa-book-open me-1"></i> Catálogo
+          </a>
+          <span class="text-secondary">•</span>
+          <a href="#viewBestSeller" onclick="switchApartado('bestseller')" class="text-warning text-decoration-none small">
+            <i class="fa-solid fa-fire me-1"></i> Best Sellers
+          </a>
+          <span class="text-secondary">•</span>
+          <a href="#viewIngredientes" onclick="switchApartado('ingredientes')" class="text-warning text-decoration-none small">
+            <i class="fa-solid fa-mortar-pestle me-1"></i> Ingredientes
+          </a>
+        </div>
+        <p class="text-secondary" style="font-size: 0.75rem;">
+          © 2026 Elqui Armonías • AC Inciensos Vicuña. Hecho con mística y dedicación para tu bienestar.
+        </p>
+      </div>
+    </footer>
+
+  </div> <!-- /.relative-content -->
+
+  <!-- ============================================== -->
+  <!-- MODALS, OFFCANVAS & FLOATING DOCK (ROOT LEVEL) -->
+  <!-- ============================================== -->
+
+  <!-- MODAL "LIBRO DE INCIENSO" (Interactive Grimorio / Book Page) -->
+    <div class="modal fade modal-grimorio" id="bookModal" tabindex="-1" aria-labelledby="bookModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="grimorio-header">
+            <div class="grimorio-book-corner"></div>
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <span class="badge bg-warning text-dark mb-2" id="modalFormatBadge">FORMATO</span>
+                <span class="badge bg-secondary ms-2" id="modalOriginBadge">🇮🇳 Hecho en India</span>
+                <h3 class="grimorio-title" id="modalTitle">Nombre del Incienso</h3>
+                <span class="text-warning small" id="modalCode">Código: XXX</span>
+              </div>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+          </div>
+
+          <!-- Grimorio Internal Tabs -->
+          <div class="grimorio-nav-tabs">
+            <button class="grimorio-tab-btn active" id="modalTabBtnFicha" onclick="switchModalTab('ficha')">
+              <i class="fa-solid fa-scroll"></i> 1. Ficha Alquímica
+            </button>
+            <button class="grimorio-tab-btn" id="modalTabBtnVariedades" onclick="switchModalTab('variedades')">
+              <i class="fa-solid fa-mortar-pestle"></i> 2. Variedades & Aromas
+            </button>
+            <button class="grimorio-tab-btn" id="modalTabBtnFotos" onclick="switchModalTab('fotos')">
+              <i class="fa-solid fa-camera-retro text-warning"></i> 3. Fotos Reales de Tienda (<span id="modalPhotoCount">0</span>)
+            </button>
+            <button class="grimorio-tab-btn" id="modalTabBtnRitual" onclick="switchModalTab('ritual')">
+              <i class="fa-solid fa-feather-pointed text-info"></i> 4. Ritual de Sahumado
+            </button>
+          </div>
+
+          <div class="modal-body p-4">
+            
+            <!-- TAB 1: FICHA ALQUÍMICA & HISTORIA -->
+            <div id="modalTabFicha">
+              <div class="row g-4">
+                <div class="col-md-5">
+                  <div class="rounded-4 overflow-hidden border border-warning border-opacity-50 shadow-lg position-relative" style="max-height: 420px;">
+                    <img src="" id="modalImage" class="img-fluid w-100 h-100 object-fit-cover" alt="Incienso" style="cursor: zoom-in;" onclick="openLightbox(this.src, document.getElementById('modalTitle').innerText)">
+                    <div class="position-absolute bottom-0 start-0 end-0 p-2 text-center bg-dark bg-opacity-75 text-warning small">
+                      <i class="fa-solid fa-magnifying-glass-plus me-1"></i> Clic para ampliar foto
+                    </div>
+                  </div>
+                  <div class="mt-3 grimorio-box-card">
+                    <div class="d-flex align-items-center gap-2 mb-2 text-warning small fw-bold">
+                      <i class="fa-solid fa-gift"></i> Accesorio Incluido:
+                    </div>
+                    <div class="small text-light" id="modalAmuletInfo">
+                      Colgante porta-incienso amuleto incluido.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <h5 class="text-warning font-mystic mb-2">
+                    <i class="fa-solid fa-feather me-2"></i>Historia y Sabiduría Espiritual
+                  </h5>
+                  <p class="text-light leading-relaxed" id="modalDescription">Descripción</p>
+
+                  <div class="my-3 grimorio-box-card">
+                    <h6 class="text-warning small text-uppercase fw-bold mb-2">
+                      <i class="fa-solid fa-eye me-1"></i> Intención Holística & Vibración:
+                    </h6>
+                    <p class="small text-light mb-0" id="modalIntentionText">
+                      Armonía, equilibrio de energías y bienestar del hogar.
+                    </p>
+                  </div>
+
+                  <div class="row g-2 mt-2">
+                    <div class="col-6">
+                      <div class="p-2 grimorio-box-card small">
+                        <span class="text-warning text-opacity-75 d-block" style="font-size: 0.72rem; letter-spacing: 0.5px;">CONTENIDO</span>
+                        <strong class="text-light">30 Varillas Aromáticas</strong>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="p-2 grimorio-box-card small">
+                        <span class="text-warning text-opacity-75 d-block" style="font-size: 0.72rem; letter-spacing: 0.5px;">ORIGEN</span>
+                        <strong class="text-light">India (Artesanal)</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mt-4 pt-3 border-top border-secondary border-opacity-25 d-flex flex-wrap gap-2">
+                    <button class="btn btn-mystic-primary" id="modalAddAllBtn">
+                      <i class="fa-solid fa-cart-plus me-1"></i> Agregar al Pedido
+                    </button>
+                    <button class="btn btn-success d-inline-flex align-items-center gap-1" onclick="consultCollectionWhatsApp()" title="Consultar por WhatsApp">
+                      <i class="fa-brands fa-whatsapp fs-5"></i> Consultar WhatsApp
+                    </button>
+                    <button class="btn btn-mystic-outline" onclick="switchModalTab('fotos')">
+                      <i class="fa-solid fa-images me-1"></i> Fotos de Tienda
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 2: VARIEDADES & AROMAS DETALLADOS -->
+            <div id="modalTabVariedades" class="d-none">
+              <h5 class="text-warning font-mystic mb-3">
+                <i class="fa-solid fa-mortar-pestle me-2"></i>Variedades y Fórmulas Aromáticas
+              </h5>
+              <p class="text-muted small mb-3">
+                Selecciona tus aromas favoritos individualmente o agrégalos directamente a tu mensaje de WhatsApp:
+              </p>
+              <div id="modalVarietiesList" class="d-flex flex-column gap-3 mb-3">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+
+            <!-- TAB 3: FOTOS REALES DE TIENDA -->
+            <div id="modalTabFotos" class="d-none">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="text-warning font-mystic mb-0">
+                  <i class="fa-solid fa-camera-retro me-2"></i>Fotos Reales en Tienda Física
+                </h5>
+                <span class="text-muted small">Haz clic en cualquier imagen para verla en pantalla completa</span>
+              </div>
+              <div class="row g-3" id="modalPhotosGrid">
+                <!-- Gallery thumbs populated dynamically -->
+              </div>
+            </div>
+
+            <!-- TAB 4: RITUAL DE SAHUMADO -->
+            <div id="modalTabRitual" class="d-none">
+              <div class="p-4 grimorio-box-card">
+                <h5 class="font-mystic text-warning mb-3">
+                  <i class="fa-solid fa-fire-flame-simple text-danger me-2"></i>Ritual Sugerido de Armonización & Sahumado
+                </h5>
+                <div class="d-flex flex-column gap-3 text-light small">
+                  <div class="d-flex gap-3 align-items-start">
+                    <div class="badge bg-warning text-dark rounded-circle p-2 fs-6">1</div>
+                    <div>
+                      <strong>Apertura y Propósito:</strong> Abre una ventana para permitir la circulación del aire. Respira profundo 3 veces y declara en silencio la intención de tu ritual (ej: paz, abundancia, purificación).
+                    </div>
+                  </div>
+                  <div class="d-flex gap-3 align-items-start">
+                    <div class="badge bg-warning text-dark rounded-circle p-2 fs-6">2</div>
+                    <div>
+                      <strong>Encendido de la Varilla:</strong> Acerca la llama a la punta de la varilla de incienso a un ángulo de 45°. Deja que arda durante 5 a 10 segundos y luego agita suavemente con la mano para apagar la llama viva.
+                    </div>
+                  </div>
+                  <div class="d-flex gap-3 align-items-start">
+                    <div class="badge bg-warning text-dark rounded-circle p-2 fs-6">3</div>
+                    <div>
+                      <strong>Colocación en el Amuleto:</strong> Inserta la varilla en el soporte o amuleto porta-incienso incluido en tu colección, sobre una superficie resistente al calor.
+                    </div>
+                  </div>
+                  <div class="d-flex gap-3 align-items-start">
+                    <div class="badge bg-warning text-dark rounded-circle p-2 fs-6">4</div>
+                    <div>
+                      <strong>Movimiento Energético:</strong> Si deseas sahumar una habitación, camina suavemente en el sentido de las agujas del reloj, llevando el humo místico a las esquinas y rincones donde la energía suele estancarse.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHTBOX MODAL PARA VER FOTO EN TAMAÑO COMPLETO -->
+    <div class="modal fade" id="photoLightboxModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header border-0 pb-0">
+            <h6 class="modal-title text-warning font-mystic" id="lightboxTitle">Foto Real de Tienda</h6>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body text-center p-3">
+            <img src="" id="lightboxImg" class="img-fluid rounded-3 shadow" style="max-height: 80vh;" alt="Foto Ampliada">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OFFCANVAS CARRITO / COTIZADOR WHATSAPP -->
+    <div class="offcanvas offcanvas-end offcanvas-mystic" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title font-mystic text-warning" id="cartOffcanvasLabel">
+          <i class="fa-solid fa-feather-pointed me-2"></i>Tu Ritual de Pedido
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-direction-column flex-column justify-content-between">
+        <div>
+          <p class="text-muted small">
+            Selecciona tus aromas favoritos. Al finalizar, genera un mensaje instantáneo para pedir directamente por WhatsApp.
+          </p>
+
+          <div id="cartItemsContainer" class="d-flex flex-column gap-2 mb-3">
+            <!-- Items populated dynamically -->
+            <div class="text-center py-5 text-muted" id="emptyCartMessage">
+              <i class="fa-solid fa-hand-holding-heart fs-1 mb-3 text-secondary opacity-50"></i>
+              <p>Tu ritual está vacío.<br>Agrega inciensos desde el catálogo.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-top border-secondary border-opacity-50 pt-3">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-light">Total de Variedades:</span>
+            <span class="fw-bold text-warning fs-5" id="cartTotalItems">0 items</span>
+          </div>
+
+          <button class="btn btn-success w-100 py-3 fw-bold rounded-3 shadow d-flex align-items-center justify-content-center gap-2" onclick="sendOrderViaWhatsApp()">
+            <i class="fa-brands fa-whatsapp fs-4"></i> Enviar Pedido por WhatsApp
+          </button>
+          <button class="btn btn-outline-danger btn-sm w-100 mt-2" onclick="clearCart()">
+            <i class="fa-solid fa-trash me-1"></i> Vaciar Carrito
+          </button>
+          <div class="text-center mt-3 pt-2 border-top border-secondary border-opacity-25">
+            <small class="text-muted d-block mb-1">Atención directa en Vicuña:</small>
+            <a href="https://wa.me/56933899501" target="_blank" class="text-success text-decoration-none fw-bold small me-2"><i class="fa-brands fa-whatsapp"></i> +56 9 3389 9501</a>
+            <a href="https://www.instagram.com/ac_inciensosvicuna/" target="_blank" class="text-warning text-decoration-none small"><i class="fa-brands fa-instagram text-danger"></i> @ac_inciensosvicuna</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLOATING MYSTIC CONTACT & CART SUITE -->
+    <div class="floating-mystic-dock">
+      <!-- Direct WhatsApp Quick Chat -->
+      <a href="https://wa.me/56933899501?text=Hola%20AC%20Inciensos%20Vicu%C3%B1a,%20quisiera%20consultar%20por%20sus%20inciensos" target="_blank" class="floating-action-btn floating-whatsapp-btn" title="Chat directo de WhatsApp (+56 9 3389 9501)">
+        <i class="fa-brands fa-whatsapp fs-5"></i>
+        <span class="floating-label-text">+56 9 3389 9501</span>
+      </a>
+
+      <!-- Direct Instagram Button -->
+      <a href="https://www.instagram.com/ac_inciensosvicuna/" target="_blank" class="floating-action-btn floating-instagram-btn" title="Instagram @ac_inciensosvicuna">
+        <i class="fa-brands fa-instagram fs-5"></i>
+        <span class="floating-label-text">@ac_inciensosvicuna</span>
+      </a>
+
+      <!-- Shopping / Ritual Cart Drawer Trigger -->
+      <button class="floating-action-btn floating-cart-btn" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" id="floatingCartBtn" title="Ver Mi Pedido">
+        <i class="fa-solid fa-feather-pointed fs-5 text-warning"></i>
+        <span class="floating-label-text">Mi Pedido</span>
+        <span class="cart-badge-count" id="floatingBadge">0</span>
+      </button>
+    </div>
+
+  <!-- Bootstrap 5.3 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Anime.js for smooth ethereal animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <script>
+    // ==========================================
+    // 1. DATA: Inciensos exactos con Fotos Reales
+    // ==========================================
+    const inciensosData = [
+      {
+        id: "tarot-tubo",
+        nombre: "Tarot [Tubo]",
+        formato: "Tubo",
+        codigo: "5267 TR105",
+        imagen: "assets/fotos/tarot_zen_tubos.jpg",
+        fotosReales: [
+          "assets/fotos/tarot_zen_tubos.jpg"
+        ],
+        amuleto: "Colgante porta-incienso Estrella grabado (30 varitas)",
+        origen: "India",
+        bestseller: true,
+        badgeText: "Favorito Místico",
+        descripcion: "Inspirado en los arquetipos mayores del Tarot. Una sinfonía aromática de rosas aterciopeladas, maderas sagradas de oudh, mieles doradas y especias orientales. «El incienso tarot puede usarse para obtener conocimiento de uno mismo, la vida y el futuro.»",
+        intencion: "Autoconocimiento, conexión con el destino, protección espiritual y elevación de la vibración del hogar.",
+        variedades: [
+          { nombre: "Lovers", notas: "Rose & Black Oudh", ingredientes: ["Rosa", "Black Oudh", "Maderas Nobles"], intencion: "Amor verdadero, unión sagrada y atracción magnética" },
+          { nombre: "Empress", notas: "French Lavender & Honey", ingredientes: ["Lavanda Francesa", "Miel", "Hierbas Silvestres"], intencion: "Fertilidad, nutrición del alma, calma y dulzura" },
+          { nombre: "The World", notas: "Vanilla Fig & Honey Comb", ingredientes: ["Vainilla", "Higo", "Panal de Miel"], intencion: "Culminación exitosa, plenitud y celebración cósmica" },
+          { nombre: "The Star", notas: "Black Berry Bay", ingredientes: ["Mora Negra", "Laurel", "Frutos del Bosque"], intencion: "Esperanza renovada, guía de luz e inspiración artística" },
+          { nombre: "The Sun", notas: "Dark Amber Gingerlily", ingredientes: ["Ámbar Oscuro", "Jengibre Silvestre", "Lirio"], intencion: "Armonía, Energía Positiva y Atracción radiante" },
+          { nombre: "The Four Wands", notas: "Jasmine Marigold", ingredientes: ["Jazmín", "Marigold", "Caléndula"], intencion: "Estabilidad en el hogar, dicha y celebración" }
+        ]
+      },
+      {
+        id: "dark-magic-tubo",
+        nombre: "Dark Magic [Tubo]",
+        formato: "Tubo",
+        codigo: "8285 BM104",
+        imagen: "assets/tubos.jpg",
+        fotosReales: [
+          "assets/fotos/dark_magic_pouch_tienda_precio.jpg",
+          "assets/fotos/dark_magic_pouch_trio.jpg"
+        ],
+        amuleto: "Incluye soporte porta-incienso de madera (30 varitas)",
+        origen: "India",
+        bestseller: true,
+        badgeText: "Protección Top",
+        descripcion: "Poderoso incienso de alta vibración ritual. Fórmulas botánicas ancestrales con resinas puras para purificación profunda, protección contra energías densas y magnetismo.",
+        intencion: "Disolución de bloqueos, apertura de caminos, adivinación y escudo protector áurico.",
+        variedades: [
+          { nombre: "Divination", notas: "Lavender & Rosemary", ingredientes: ["Lavanda", "Romero", "Hierbas de Claridad"], intencion: "Claridad mental, intuición psíquica y sueños lúcidos" },
+          { nombre: "Protection", notas: "Black Opium & Myrrh", ingredientes: ["Opio Negro", "Mirra", "Resinas Sagradas"], intencion: "Escudo protector infranqueable y disolución de envidias" },
+          { nombre: "Attraction", notas: "Blood Orange & Jasmine", ingredientes: ["Naranja Sangría", "Jazmín", "Cítricos Dulces"], intencion: "Magnetismo personal, seducción y pasión" },
+          { nombre: "Prosperity", notas: "Juniper & Eucalyptus", ingredientes: ["Enebro", "Eucalipto", "Pino Silvestre"], intencion: "Apertura de caminos, prosperidad económica y éxito laboral" }
+        ]
+      },
+      {
+        id: "dark-magic-pouch",
+        nombre: "Dark Magic [Pouch]",
+        formato: "Pouch",
+        codigo: "5246 BM101",
+        imagen: "assets/fotos/dark_magic_pouch_trio.jpg",
+        fotosReales: [
+          "assets/fotos/dark_magic_pouch_trio.jpg",
+          "assets/fotos/dark_magic_pouch_tienda_precio.jpg",
+          "assets/fotos/dark_magic_pouch_attraction.jpg",
+          "assets/fotos/dark_magic_pouch_prosperity_divination.jpg"
+        ],
+        amuleto: "Talismán Pentagrama con Ojo Sagrado en madera pirograbada (incluye cordón y soporte)",
+        origen: "India",
+        bestseller: true,
+        badgeText: "Talismán Incluido",
+        descripcion: "Presentación en elegante pouch negro místico con estrellas y lunas. Cada sobre incluye 30 varitas aromáticas de colores según la energía y un talismán porta-incienso pentagrama de madera pirograbada.",
+        intencion: "Corte de energías bajas, transmutación de cargas en el hogar y atracción de fortuna.",
+        variedades: [
+          { nombre: "Divination", notas: "Lavender & Rosemary (Varillas Púrpuras)", ingredientes: ["Lavanda", "Romero", "Hierbas de Claridad"], intencion: "Claridad mental y videncia espiritual" },
+          { nombre: "Protection", notas: "Black Opium & Myrrh (Varillas Violeta Oscuro)", ingredientes: ["Opio Negro", "Mirra", "Resinas Sagradas"], intencion: "Protección absoluta de espacios y personas" },
+          { nombre: "Attraction", notas: "Blood Orange & Jasmine (Varillas Coral)", ingredientes: ["Naranja Sangría", "Jazmín", "Cítricos Dulces"], intencion: "Atracción de amor, encanto y carisma" },
+          { nombre: "Prosperity", notas: "Juniper & Eucalyptus (Varillas Esmeralda)", ingredientes: ["Enebro", "Eucalipto", "Pino Silvestre"], intencion: "Llegada de dinero, abundancia y fertilidad de proyectos" }
+        ]
+      },
+      {
+        id: "sim-ross-melbourne",
+        nombre: "Sim & Ross Melbourne [Tubo]",
+        formato: "Tubo",
+        codigo: "SR53",
+        imagen: "assets/fotos/sim_ross_zen_tubos.jpg",
+        fotosReales: [
+          "assets/fotos/sim_ross_zen_tubos.jpg"
+        ],
+        amuleto: "Incluye soporte quemador de madera (30 varitas)",
+        origen: "India / Formulación Austral",
+        bestseller: true,
+        badgeText: "Elegancia Austral",
+        descripcion: "Inspiración botánica victoriana de Melbourne. Combinaciones sofisticadas de perfumería fina con frutas oscuras, cardamomo aromático y maderas centenarias de roble inglés.",
+        intencion: "Armonía estética, serenidad, sofisticación y bienestar sensorial.",
+        variedades: [
+          { nombre: "Rose & Black Oud", notas: "Pétalos de rosa terciopelo con oudh resinoso", ingredientes: ["Rosa", "Black Oudh", "Madera Oriental"], intencion: "Elegancia, romance profundo y distinción" },
+          { nombre: "Mimosa & Cardamom", notas: "Aroma floral y especiado cálido", ingredientes: ["Mimosa", "Cardamomo", "Especias"], intencion: "Calidez en el trato, ternura y apertura" },
+          { nombre: "Blackberry & Bay", notas: "Moras jugosas con hojas de laurel verde", ingredientes: ["Mora Negra", "Laurel", "Hojas Verdes"], intencion: "Frescura silvestre y renovación de pensamientos" },
+          { nombre: "Lime Basil & Mandarin", notas: "Frescura cítrica chispeante y albahaca", ingredientes: ["Lima", "Albahaca", "Mandarina"], intencion: "Alegría efervescente, enfoque y vitalidad" },
+          { nombre: "English Oak & Black Currant", notas: "Roble inglés y grosellas negras silvestres", ingredientes: ["Roble Inglés", "Grosella Negra", "Maderas Nobles"], intencion: "Firmeza, enraizamiento noble y madurez" },
+          { nombre: "Peony & Blush Suede", notas: "Peonías en flor con toque aterciopelado", ingredientes: ["Peonía", "Gamuza", "Flores Blancas"], intencion: "Delicadeza, paz interior y armonía femenina" }
+        ]
+      },
+      {
+        id: "marmol-tubo",
+        nombre: "Mármol [Tubo]",
+        formato: "Tubo",
+        codigo: "MBL 101",
+        imagen: "assets/fotos/marmol_zen_tubos.jpg",
+        fotosReales: [
+          "assets/fotos/marmol_zen_tubos.jpg"
+        ],
+        amuleto: "Porta-incienso incluido en el tubo (30 varitas)",
+        origen: "India",
+        bestseller: false,
+        badgeText: "Sanación & Paz",
+        descripcion: "Colección sobria inspirada en la pureza mineral del mármol. Fragancias frescas, limpias y reconfortantes de jazmines blancos, coco nevado y brisa de lino. Etiquetado en tienda para 'Liberación de bloqueos y sanación emocional'.",
+        intencion: "Sanación emocional, disolución de nudos mentales, calma y orden en los espacios.",
+        variedades: [
+          { nombre: "White Jasmine", notas: "Jazmín blanco puro y radiante", ingredientes: ["Jazmín", "Flores Blancas"], intencion: "Liberación de bloqueos y sanación emocional" },
+          { nombre: "Snow Coconut", notas: "Coco cremoso de invierno", ingredientes: ["Coco", "Vainilla Suave"], intencion: "Nutrición afectiva y relajación hogareña" },
+          { nombre: "Mint Eucalyptus", notas: "Eucalipto refrescante con menta silvestre", ingredientes: ["Eucalipto", "Menta", "Alcanfor"], intencion: "Apertura de vías respiratorias y ligereza mental" },
+          { nombre: "Vanilla Velvet", notas: "Vainilla terciopelo dulce y cálida", ingredientes: ["Vainilla", "Ámbar Suave"], intencion: "Calidez, endulzamiento y protección de niños" },
+          { nombre: "Wild Berries", notas: "Frutas silvestres recolectadas del bosque", ingredientes: ["Frutos del Bosque", "Bayas Rojas", "Frutilla"], intencion: "Vitalidad, juventud y alegría contagiosa" },
+          { nombre: "Linen Breeze", notas: "Brisa fresca de sábanas limpias de lino", ingredientes: ["Lino Limpio", "Algodón", "Brisa Marina"], intencion: "Sensación de limpieza pura, paz y reinicio" }
+        ]
+      },
+      {
+        id: "sweet-dreams-tubo",
+        nombre: "Sweet Dreams [Tubo]",
+        formato: "Tubo",
+        codigo: "DR 53",
+        imagen: "assets/tubos.jpg",
+        fotosReales: [
+          "assets/fotos/sweet_dreams_pouch_trio.jpg"
+        ],
+        amuleto: "Soporte porta-incienso Atrapasueños (30 varitas)",
+        origen: "India",
+        bestseller: true,
+        badgeText: "Paz Nocturna",
+        descripcion: "Diseñado para aquietar la mente antes de dormir, calmar tensiones acumuladas durante el día y facilitar un descanso profundo, lúcido y reparador.",
+        intencion: "Alivio del insomnio, calma del sistema nervioso, protección nocturna y sueños armoniosos.",
+        variedades: [
+          { nombre: "Magical Dreams", notas: "Bergamot Orchid Jasmine Violet", ingredientes: ["Bergamota", "Orquídea", "Jazmín", "Violeta"], intencion: "Relajación etérea y conexión con la intuición nocturna" },
+          { nombre: "Sweet Dreams", notas: "HoneySuckle Pink Grapefruit", ingredientes: ["Madreselva (Honeysuckle)", "Pomelo Rosado", "Miel"], intencion: "Sueño dulce, optimismo y disipación de pesadillas" },
+          { nombre: "Fantasy Dreams", notas: "Lavender Musk Ylang Ylang", ingredientes: ["Lavanda", "Almizcle (Musk)", "Ylang Ylang"], intencion: "Calma muscular profunda y descanso reparador" }
+        ]
+      },
+      {
+        id: "sweet-dreams-pouch",
+        nombre: "Sweet Dreams [Pouch]",
+        formato: "Pouch",
+        codigo: "5247 DR51",
+        imagen: "assets/fotos/sweet_dreams_pouch_trio.jpg",
+        fotosReales: [
+          "assets/fotos/sweet_dreams_pouch_trio.jpg",
+          "assets/fotos/sweet_dreams_pouch_atrapasuenos.jpg",
+          "assets/fotos/sweet_dreams_dark_magic_pouches.jpg"
+        ],
+        amuleto: "Amuleto metálico Atrapasueños tallado con plumas colgantes y cordón plateado",
+        origen: "India",
+        bestseller: true,
+        badgeText: "Atrapasueños Real",
+        descripcion: "Presentación en bolsa pouch artesanal con ventana y diseño bohemio 'Follow Your Dreams'. Incluye un hermoso amuleto porta-incienso metálico en forma de Atrapasueños con plumas plateadas para colgar en tu cabecera.",
+        intencion: "Filtrar pensamientos negativos, proteger el descanso nocturno y armonizar dormitorios.",
+        variedades: [
+          { nombre: "Magical Dreams", notas: "Bergamot Orchid Jasmine Violet (Varillas Doradas)", ingredientes: ["Bergamota", "Orquídea", "Jazmín", "Violeta"], intencion: "Fantasías lúcidas y paz mental" },
+          { nombre: "Sweet Dreams", notas: "HoneySuckle Pink Grapefruit (Varillas Ámbar)", ingredientes: ["Madreselva (Honeysuckle)", "Pomelo Rosado", "Miel"], intencion: "Dulzura y serenidad nocturna" },
+          { nombre: "Fantasy Dreams", notas: "Lavender Musk Ylang Ylang (Varillas Violetas)", ingredientes: ["Lavanda", "Almizcle (Musk)", "Ylang Ylang"], intencion: "Sedación natural del estrés y descanso profundo" }
+        ]
+      },
+      {
+        id: "spirit-eye-tubo",
+        nombre: "Spirit Eye [Tubo]",
+        formato: "Tubo",
+        codigo: "SE104",
+        imagen: "assets/tubos.jpg",
+        fotosReales: [],
+        amuleto: "Incluye soporte porta-incienso Tercer Ojo (30 varitas)",
+        origen: "India",
+        bestseller: false,
+        badgeText: "Tercer Ojo",
+        descripcion: "Incienso formulado para activar el chakra Ajna (Tercer Ojo), elevar la intuición, acompañar meditaciones profundas y facilitar la conexión con guías espirituales.",
+        intencion: "Apertura psíquica, conexión espiritual, paz y enfoque en la verdad interior.",
+        variedades: [
+          { nombre: "Connection", notas: "Patchouli & Myrrh", ingredientes: ["Pachulí", "Mirra", "Resinas Orientales"], intencion: "Enraizamiento y comunión con el plano superior" },
+          { nombre: "Happiness", notas: "Bergamot & Lemongrass", ingredientes: ["Bergamota", "Lemongrass", "Hierba Luisa"], intencion: "Optimismo, vitalidad solar y buen humor" },
+          { nombre: "Peace", notas: "Lavender & Vanilla", ingredientes: ["Lavanda", "Vainilla", "Flores Calmantes"], intencion: "Paz interior y acallamiento de la mente" },
+          { nombre: "Passion", notas: "Amber & Musk", ingredientes: ["Ámbar", "Almizcle (Musk)", "Especias Cálidas"], intencion: "Fuerza vital, entusiasmo y fuego creador" }
+        ]
+      },
+      {
+        id: "tree-of-life-pouch",
+        nombre: "Tree Of Life [Pouch]",
+        formato: "Pouch",
+        codigo: "5245 TOL101",
+        imagen: "assets/fotos/tree_of_life_pouch_trio_1.jpg",
+        fotosReales: [
+          "assets/fotos/tree_of_life_pouch_trio_1.jpg",
+          "assets/fotos/tree_of_life_pouch_fruit_evergreen.jpg",
+          "assets/fotos/tree_of_life_pouch_flower_moonlit.jpg",
+          "assets/fotos/tree_of_life_pouch_moonlit_whispering.jpg",
+          "assets/fotos/tree_of_life_pouch_whispering_rain.jpg",
+          "assets/fotos/tree_of_life_pouch_forest_rain.jpg"
+        ],
+        amuleto: "Medallón circular de madera pirograbada con el Árbol de la Vida y cordón plateado",
+        origen: "India",
+        bestseller: true,
+        badgeText: "Árbol Sagrado",
+        descripcion: "Inspirado en el Árbol de la Vida de la tradición cabalística y chamánica. Cada variedad representa una parte sagrada del árbol: Raíz, Ramas, Tronco, Flores, Hojas y Frutos. Incluye medallón de madera natural pirograbado.",
+        intencion: "Alineación de los 7 chakras, conexión con la Madre Tierra y renovación del árbol genealógico.",
+        variedades: [
+          { nombre: "Forest Rain (Raíz)", notas: "Tierra húmeda y musgo de bosque (Varillas Azul Índigo)", ingredientes: ["Tierra Húmeda", "Musgo", "Pachulí"], intencion: "Chakra Raíz: Estabilidad, seguridad y enraizamiento" },
+          { nombre: "Whispering Tree (Ramas)", notas: "Brisa fresca entre ramas de cedro (Varillas Roble)", ingredientes: ["Cedro", "Ciprés", "Eucalipto"], intencion: "Chakra Corona: Sabiduría cósmica y apertura mental" },
+          { nombre: "Moonlit Woods (Tronco)", notas: "Maderas bañadas por luz lunar (Varillas Marrón)", ingredientes: ["Sándalo", "Maderas Nobles", "Resina"], intencion: "Chakra Plexo: Fuerza de voluntad y firmeza interna" },
+          { nombre: "Flower Market (Flores)", notas: "Mercado primaveral de flores vivas (Varillas Esmeralda)", ingredientes: ["Flores Silvestres", "Jazmín", "Rosas"], intencion: "Chakra Corazón: Amor incondicional y ternura" },
+          { nombre: "Evergreen Forest (Hojas)", notas: "Agujas de abeto fresco y pino perenne (Varillas Doradas)", ingredientes: ["Pino", "Agujas de Abeto", "Hierbas Verdes"], intencion: "Chakra Garganta: Verdad, respiración pura y vitalidad" },
+          { nombre: "Fruit Orchard (Frutas)", notas: "Huerto de frutas maduras al sol (Varillas Rojo Rubí)", ingredientes: ["Frutas Silvestres", "Higo", "Manzana", "Frutilla"], intencion: "Chakra Sacro: Creatividad, fertilidad y dulzura" }
+        ]
+      },
+      {
+        id: "zen-tubo",
+        nombre: "Zen [Tubo]",
+        formato: "Tubo",
+        codigo: "ZEN 103",
+        imagen: "assets/fotos/zen_ambar_lavanda_tubos.jpg",
+        fotosReales: [
+          "assets/fotos/zen_ambar_lavanda_tubos.jpg",
+          "assets/fotos/tarot_zen_tubos.jpg",
+          "assets/fotos/sim_ross_zen_tubos.jpg",
+          "assets/fotos/marmol_zen_tubos.jpg"
+        ],
+        amuleto: "Incluye soporte quemador Zen (30 varitas)",
+        origen: "India",
+        bestseller: true,
+        badgeText: "Armonía & Paz",
+        descripcion: "Equilibrio supremo para crear una atmósfera de templo interior, calmar la mente y armonizar los espacios. Fórmulas de alta pureza enrolladas a mano en India con gomas de madera y aceites esenciales puros.",
+        intencion: "Paz y equilibrio, atracción de buena suerte, armonía y energía positiva, sanación del alma y elevación espiritual.",
+        variedades: [
+          { nombre: "Dark Amber & Gingerlily", notas: "Ámbar Negro & Lilio de Gengibre (Tubo Naranja)", ingredientes: ["Ámbar Oscuro", "Jengibre Silvestre", "Lirio"], intencion: "Armonía, Energía Positiva y Atracción" },
+          { nombre: "French Lavender & Honey", notas: "Lavanda Francesa & Miel (Tubo Púrpura)", ingredientes: ["Lavanda Francesa", "Miel", "Polen"], intencion: "Paz y Equilibrio, Atracción de Buena Suerte" },
+          { nombre: "Jasmine & Marigold", notas: "Jazmín & Caléndula (Tubo Verde)", ingredientes: ["Jazmín", "Caléndula", "Flores Silvestres"], intencion: "Vitalidad, Renovación y Alegría" },
+          { nombre: "Sandalwood & Iris", notas: "Madera de Sándalo & Lirio Amarillo (Tubo Dorado)", ingredientes: ["Sándalo", "Flor de Iris", "Maderas Orientales"], intencion: "Sanación del Alma, Protección Energética y Elevación Espiritual" },
+          { nombre: "Rose & Black Oudh", notas: "Rosa mística y resina sagrada de Oudh", ingredientes: ["Rosa", "Black Oudh", "Maderas Nobles"], intencion: "Amor puro y elevación meditativa" },
+          { nombre: "Vanilla Fig & Honey Comb", notas: "Higo silvestre con vainilla y panal", ingredientes: ["Vainilla", "Higo", "Panal de Miel"], intencion: "Endulzamiento de relaciones y confort del hogar" }
+        ]
+      },
+      {
+        id: "karma-arpillera",
+        nombre: "Karma Scents [Arpillera]",
+        formato: "Arpillera",
+        codigo: "KRM-ARP01",
+        imagen: "assets/fotos/karma_arpillera_coco_mango.jpg",
+        fotosReales: [
+          "assets/fotos/karma_arpillera_coco_mango.jpg",
+          "assets/fotos/karma_arpillera_mango_maracuya.jpg",
+          "assets/fotos/karma_arpillera_canela.jpg",
+          "assets/fotos/karma_arpillera_chocolate_vainilla.jpg"
+        ],
+        amuleto: "Amuleto hexagonal dorado con glitter y micro-espejos tallados (repele energías densas e ilumina)",
+        origen: "India",
+        bestseller: true,
+        badgeText: "Novedad en Arpillera",
+        descripcion: "¡Nueva colección exclusiva en auténtico saco de arpillera yute rústico! «Karma Scents emite las vibraciones benéficas de las esencias botánicas que realzan la energía del entorno mientras arden». Incluye amuleto porta-incienso hexagonal dorado de madera con espejo brillante.",
+        intencion: "Purificación del karma espacial, apertura de caminos de dinero, pasión frutal y protección contra envidias.",
+        variedades: [
+          { nombre: "Menta Frutilla", notas: "Menta refrescante con frutilla silvestre dulce", ingredientes: ["Frutilla", "Menta", "Frutos Rojos"], intencion: "Frescura revitalizante, buen ánimo y alegría" },
+          { nombre: "Coco Canela Clavo de Olor", notas: "Canela dulce con clavo de olor picante y coco", ingredientes: ["Canela", "Clavo de Olor", "Coco"], intencion: "Atracción de prosperidad, fuego protector y calidez" },
+          { nombre: "Manzana Canela Clavo de Olor", notas: "Manzana horneada con canela en rama y clavo", ingredientes: ["Manzana", "Canela", "Clavo de Olor"], intencion: "Bienvenida al hogar, abundancia familiar y confort" },
+          { nombre: "Coco Mango", notas: "Mango maduro con crema de coco tostado", ingredientes: ["Coco", "Mango", "Frutas Tropicales"], intencion: "Alegría sensual, creatividad y optimismo veraniego" },
+          { nombre: "Mango Maracuyá", notas: "Maracuyá chispeante con pulpa de mango dulce", ingredientes: ["Mango", "Maracuyá", "Cítricos Tropicales"], intencion: "Energía festiva, entusiasmo y motivación creadora" },
+          { nombre: "Canela Pura", notas: "Canela especiada de alta vibración ritual", ingredientes: ["Canela", "Resinas Cálidas"], intencion: "Atracción de dinero, éxito en ventas y fuerza solar" },
+          { nombre: "Chocolate Vainilla", notas: "Cacao fino con vainas de vainilla suave", ingredientes: ["Chocolate / Cacao", "Vainilla"], intencion: "Endulzamiento del alma, calma y bienestar afectivo" }
+        ]
+      },
+      {
+        id: "esencia-pura-frutilla",
+        nombre: "Esencia Pura: Frutilla Silvestre",
+        formato: "Puro",
+        codigo: "EP-FRUT01",
+        imagen: "assets/frutilla_botanica.jpg",
+        fotosReales: [],
+        amuleto: "Soporte botánico de madera (30 varitas)",
+        origen: "Artesanal Elqui",
+        bestseller: true,
+        badgeText: "Puro Ingrediente",
+        descripcion: "Incienso monocomponente elaborado exclusivamente con extracto e infusión de Frutilla Silvestre fresca. Dulce, alegre, afrodisíaco y revitalizante.",
+        intencion: "Apertura del corazón a la dulzura, optimismo y atracción de amistades sinceras.",
+        variedades: [
+          { nombre: "Frutilla Silvestre Pura", notas: "Frutillas rojas dulces y hojas verdes", ingredientes: ["Frutilla", "Frutos Rojos Silvestres"], intencion: "Atracción y alegría" }
+        ]
+      },
+      {
+        id: "esencia-pura-lavanda",
+        nombre: "Esencia Pura: Lavanda Calmante",
+        formato: "Puro",
+        codigo: "EP-LAV02",
+        imagen: "assets/pouches.jpg",
+        fotosReales: [],
+        amuleto: "Soporte botánico incluido",
+        origen: "Artesanal Elqui",
+        bestseller: false,
+        badgeText: "Puro Ingrediente",
+        descripcion: "Varillas puras de flor de lavanda destilada. Sin mezclas complejas, ideal para yoga, meditación y sueño sereno.",
+        intencion: "Sedación natural del estrés, purificación del aura y sueño reparador.",
+        variedades: [
+          { nombre: "Lavanda Provenzal Pura", notas: "Flores secas de lavanda y aceite esencial puro", ingredientes: ["Lavanda Francesa", "Lavanda"], intencion: "Paz mental profunda" }
+        ]
+      },
+      {
+        id: "esencia-pura-palosanto",
+        nombre: "Esencia Pura: Palo Santo Sagrado",
+        formato: "Puro",
+        codigo: "EP-PS03",
+        imagen: "assets/frutilla_botanica.jpg",
+        fotosReales: [],
+        amuleto: "Soporte sagrado incluido",
+        origen: "Perú / Sustentable",
+        bestseller: true,
+        badgeText: "Limpieza Astral",
+        descripcion: "Madera recolectada de forma sustentable de árboles caídos naturalmente. Limpieza energética profunda de ambientes, cristales y aura personal.",
+        intencion: "Purificación chamánica, transmutación de vibraciones pesadas y bendición del hogar.",
+        variedades: [
+          { nombre: "Palo Santo Natural", notas: "Madera sagrada con notas cítricas resinosas", ingredientes: ["Palo Santo", "Resina Natural"], intencion: "Corte de negatividad" }
+        ]
+      },
+      {
+        id: "esencia-pura-sandalo",
+        nombre: "Esencia Pura: Sándalo de la India",
+        formato: "Puro",
+        codigo: "EP-SAN04",
+        imagen: "assets/tubos.jpg",
+        fotosReales: [],
+        amuleto: "Soporte sagrado incluido",
+        origen: "India",
+        bestseller: false,
+        badgeText: "Puro Ingrediente",
+        descripcion: "Sándalo blanco de Mysore. Aroma amaderado cremoso milenario para silenciar los pensamientos y atraer paz mental y devoción.",
+        intencion: "Elevación de la conciencia, introspección profunda y paz interior.",
+        variedades: [
+          { nombre: "Sándalo Blanco Real", notas: "Sándalo cremoso milenario", ingredientes: ["Sándalo", "Maderas Nobles"], intencion: "Devoción y meditación" }
+        ]
+      }
+    ];
+
+    // Key Botanical Ingredients for Section 3
+    const keyIngredients = [
+      { id: "Canela", label: "Canela", icon: "fa-solid fa-fire", desc: "Fuego, prosperidad y dinero rápido" },
+      { id: "Frutilla", label: "Frutilla / Fresa", icon: "fa-solid fa-apple-whole", desc: "Dulzura silvestre y alegría" },
+      { id: "Lavanda", label: "Lavanda", icon: "fa-solid fa-spa", desc: "Calma mental y sueño profundo" },
+      { id: "Rosa", label: "Rosas", icon: "fa-solid fa-fan", desc: "Amor propio y vibración alta" },
+      { id: "Black Oudh", label: "Black Oudh", icon: "fa-solid fa-tree", desc: "Madera mística y resina sagrada" },
+      { id: "Clavo de Olor", label: "Clavo de Olor", icon: "fa-solid fa-shield-halved", desc: "Protección y calor hogareño" },
+      { id: "Vainilla", label: "Vainilla", icon: "fa-solid fa-cookie-bite", desc: "Calidez, ternura y confort" },
+      { id: "Jazmín", label: "Jazmín", icon: "fa-solid fa-seedling", desc: "Intuición, misterio y sensualidad" },
+      { id: "Romero", label: "Romero", icon: "fa-solid fa-wand-magic", desc: "Claridad mental y adivinación" },
+      { id: "Eucalipto", label: "Eucalipto", icon: "fa-solid fa-wind", desc: "Apertura de caminos y frescura" },
+      { id: "Mirra", label: "Mirra", icon: "fa-solid fa-fire-burner", desc: "Purificación ancestral de templo" },
+      { id: "Miel", label: "Miel", icon: "fa-solid fa-jar", desc: "Endulzamiento y buena fortuna" },
+      { id: "Mango", label: "Mango", icon: "fa-solid fa-sun", desc: "Pasión tropical y entusiasmo" },
+      { id: "Pachulí", label: "Pachulí", icon: "fa-solid fa-mountain", desc: "Enraizamiento y magnetismo" },
+      { id: "Sándalo", label: "Sándalo", icon: "fa-solid fa-om", desc: "Meditación y paz del alma" },
+      { id: "Palo Santo", label: "Palo Santo", icon: "fa-solid fa-feather", desc: "Limpieza astral profunda" }
+    ];
+
+    // State variables
+    let currentApartado = 'libro';
+    let currentFormatFilter = 'all';
+    let cart = [];
+    let audioContext = null;
+    let isSoundActive = false;
+
+    // ==========================================
+    // 2. RENDER FUNCTIONS
+    // ==========================================
+
+    function renderCatalog(itemsToRender = inciensosData) {
+      const grid = document.getElementById('productsGrid');
+      grid.innerHTML = '';
+
+      document.getElementById('productCounter').innerText = itemsToRender.length;
+
+      if (itemsToRender.length === 0) {
+        grid.innerHTML = `
+          <div class="col-12 text-center py-5">
+            <i class="fa-solid fa-magnifying-glass fs-1 text-secondary opacity-50 mb-3"></i>
+            <h4 class="font-mystic text-warning">No se encontraron inciensos</h4>
+            <p class="text-muted small">Prueba cambiando tu búsqueda o seleccionando otro filtro de formato.</p>
+            <button class="btn btn-outline-warning btn-sm mt-2" onclick="resetFilters()">Restablecer Filtros</button>
+          </div>
+        `;
+        return;
+      }
+
+      itemsToRender.forEach((item) => {
+        const allIngs = [];
+        item.variedades.forEach(v => {
+          v.ingredientes.forEach(ing => {
+            if (!allIngs.includes(ing)) allIngs.push(ing);
+          });
+        });
+
+        const formatIcon = item.formato === 'Tubo' ? 'fa-vial' : (item.formato === 'Pouch' ? 'fa-envelope-open-text' : (item.formato === 'Arpillera' ? 'fa-scroll' : 'fa-seedling'));
+
+        const col = document.createElement('div');
+        col.className = 'col-lg-4 col-md-6 card-item-anim';
+        col.innerHTML = `
+          <div class="card-incienso">
+            <div class="product-img-wrapper" onclick="openBookModal('${item.id}')" title="Clic para abrir el Libro de Inciensos">
+              <span class="product-format-badge">
+                <i class="fa-solid ${formatIcon}"></i> ${item.formato}
+              </span>
+              ${item.bestseller ? `
+                <span class="product-bestseller-badge">
+                  <i class="fa-solid fa-crown"></i> ${item.badgeText || 'Best Seller'}
+                </span>
+              ` : ''}
+              ${item.fotosReales && item.fotosReales.length > 0 ? `
+                <span class="product-photos-badge">
+                  <i class="fa-solid fa-camera"></i> ${item.fotosReales.length} fotos tienda
+                </span>
+              ` : ''}
+              <img src="${item.imagen}" class="product-img" alt="${item.nombre}" loading="lazy">
+              <div class="product-img-overlay"></div>
+            </div>
+
+            <div class="card-body-incienso">
+              <div class="product-code-row">
+                <span class="product-code">
+                  <i class="fa-solid fa-barcode"></i> Cód: ${item.codigo}
+                </span>
+                <span class="product-amulet-tag">
+                  <i class="fa-solid fa-wand-magic-sparkles me-1 text-warning"></i> + Amuleto
+                </span>
+              </div>
+
+              <h4 class="product-title" style="cursor: pointer;" onclick="openBookModal('${item.id}')">${item.nombre}</h4>
+              <p class="product-desc">${item.descripcion}</p>
+
+              <!-- List of Scent Profiles with Direct Add-to-cart -->
+              <div class="fragrance-list">
+                ${item.variedades.map(v => `
+                  <div class="fragrance-item">
+                    <div class="fragrance-name">
+                      <span><i class="fa-regular fa-star text-warning me-1"></i> ${v.nombre}</span>
+                      <button class="btn btn-sm btn-outline-warning py-0 px-2" style="font-size: 0.72rem;" onclick="addToCart('${item.nombre} - ${v.nombre}', '${v.notas}', '${item.codigo}')" title="Agregar solo este aroma">
+                        <i class="fa-solid fa-plus"></i> Pedir
+                      </button>
+                    </div>
+                    <div class="fragrance-notes"><i class="fa-solid fa-leaf text-success me-1"></i>${v.notas}</div>
+                  </div>
+                `).join('')}
+              </div>
+
+              <!-- Botanical Ingredient Badges -->
+              <div class="ingredient-badges-wrap">
+                ${allIngs.slice(0, 5).map(ing => `
+                  <span class="ing-badge" onclick="filterByIngredientName('${ing}')">
+                    #${ing}
+                  </span>
+                `).join('')}
+                ${allIngs.length > 5 ? `<span class="ing-badge text-warning">+${allIngs.length - 5} más</span>` : ''}
+              </div>
+
+              <!-- Action buttons -->
+              <div class="mt-auto pt-2 d-flex flex-column gap-2">
+                <button class="btn btn-mystic-primary" onclick="openBookModal('${item.id}')">
+                  <i class="fa-solid fa-book-open"></i> Ver en el Libro Guía
+                </button>
+                <button class="btn btn-mystic-outline" onclick="addPackToCart('${item.id}')">
+                  <i class="fa-solid fa-cart-shopping"></i> Agregar Colección Completa
+                </button>
+              </div>
+
+            </div>
+          </div>
+        `;
+        grid.appendChild(col);
+      });
+
+      // Animate entry with Anime.js
+      if (typeof anime !== 'undefined') {
+        anime({
+          targets: '#productsGrid .card-item-anim',
+          translateY: [25, 0],
+          opacity: [0, 1],
+          delay: anime.stagger(40),
+          easing: 'easeOutQuad',
+          duration: 450
+        });
+      }
+    }
+
+    // Render Best Sellers (Section 2)
+    function renderBestSellers() {
+      const grid = document.getElementById('bestsellerGrid');
+      grid.innerHTML = '';
+
+      const bestSellers = inciensosData.filter(i => i.bestseller);
+
+      bestSellers.forEach(item => {
+        const col = document.createElement('div');
+        col.className = 'col-lg-4 col-md-6';
+        col.innerHTML = `
+          <div class="card-incienso border-warning border-opacity-50">
+            <div class="product-img-wrapper" onclick="openBookModal('${item.id}')">
+              <span class="product-bestseller-badge">
+                <i class="fa-solid fa-fire text-danger"></i> ${item.badgeText || 'Top Ventas'}
+              </span>
+              <img src="${item.imagen}" class="product-img" alt="${item.nombre}">
+              <div class="product-img-overlay"></div>
+            </div>
+            <div class="card-body-incienso">
+              <div class="product-code-row">
+                <span class="product-code">
+                  <i class="fa-solid fa-award text-warning"></i> Cód: ${item.codigo}
+                </span>
+                <span class="product-amulet-tag">
+                  <i class="fa-solid fa-gem text-warning me-1"></i> Formato: ${item.formato}
+                </span>
+              </div>
+              <h4 class="product-title" style="cursor: pointer;" onclick="openBookModal('${item.id}')">${item.nombre}</h4>
+              <p class="product-desc">${item.descripcion}</p>
+
+              <div class="alert alert-dark bg-dark bg-opacity-75 border-secondary py-2 px-3 small mb-3">
+                <i class="fa-solid fa-sparkles text-warning me-1"></i> <strong>Aromas Más Populares:</strong><br>
+                ${item.variedades.slice(0, 2).map(v => `<span class="badge bg-secondary bg-opacity-50 me-1 mt-1">${v.nombre}: ${v.notas}</span>`).join('')}
+              </div>
+
+              <div class="d-flex gap-2 mt-auto">
+                <button class="btn btn-mystic-primary w-100" onclick="openBookModal('${item.id}')">
+                  <i class="fa-solid fa-book-open"></i> Ficha y Sabiduría
+                </button>
+                <button class="btn btn-mystic-outline w-100" onclick="addPackToCart('${item.id}')">
+                  <i class="fa-solid fa-plus"></i> Pedir
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        grid.appendChild(col);
+      });
+
+      if (typeof anime !== 'undefined') {
+        anime({
+          targets: '#bestsellerGrid .card-incienso',
+          scale: [0.95, 1],
+          opacity: [0, 1],
+          delay: anime.stagger(50),
+          duration: 450,
+          easing: 'easeOutCubic'
+        });
+      }
+    }
+
+    // Render Section 3: Ingredients Explorer
+    function renderIngredientsExplorer() {
+      const cardsGrid = document.getElementById('ingredientCardsGrid');
+      cardsGrid.innerHTML = '';
+
+      keyIngredients.forEach(ing => {
+        let count = 0;
+        inciensosData.forEach(item => {
+          item.variedades.forEach(v => {
+            const hasIt = v.ingredientes.some(i => i.toLowerCase().includes(ing.id.toLowerCase())) ||
+                          v.notas.toLowerCase().includes(ing.id.toLowerCase());
+            if (hasIt) count++;
+          });
+        });
+
+        const col = document.createElement('div');
+        col.className = 'col-6 col-md-3 col-lg-2';
+        col.innerHTML = `
+          <div class="ingredient-explorer-card" onclick="selectIngredientFilter('${ing.id}', '${ing.label}', this)">
+            <div class="ing-icon-circle">
+              <i class="${ing.icon}"></i>
+            </div>
+            <h5 class="ing-card-title">${ing.label}</h5>
+            <div class="ing-card-count">${count} inciensos</div>
+            <div class="text-secondary small mt-1" style="font-size: 0.7rem;">${ing.desc}</div>
+          </div>
+        `;
+        cardsGrid.appendChild(col);
+      });
+
+      filterByIngredientId('Canela', 'Canela Sagrada');
+    }
+
+    function selectIngredientFilter(ingredientKey, ingredientLabel, cardElem) {
+      document.querySelectorAll('.ingredient-explorer-card').forEach(c => c.classList.remove('selected'));
+      if (cardElem) cardElem.classList.add('selected');
+      filterByIngredientId(ingredientKey, ingredientLabel);
+      playMysticChime(528); // 528 Hz DNA repair / love frequency
+    }
+
+    function filterByIngredientId(ingKey, ingLabel) {
+      const header = document.getElementById('ingredientFilteredHeader');
+      const nameElem = document.getElementById('activeIngredientName');
+      const resultsGrid = document.getElementById('ingredientResultsGrid');
+
+      header.classList.remove('d-none');
+      nameElem.innerText = ingLabel || ingKey;
+
+      resultsGrid.innerHTML = '';
+
+      const matchingItems = [];
+
+      inciensosData.forEach(item => {
+        const matchingVarieties = item.variedades.filter(v => {
+          const inIngs = v.ingredientes.some(i => i.toLowerCase().includes(ingKey.toLowerCase()));
+          const inNotas = v.notas.toLowerCase().includes(ingKey.toLowerCase());
+          const inName = item.nombre.toLowerCase().includes(ingKey.toLowerCase()) || v.nombre.toLowerCase().includes(ingKey.toLowerCase());
+          return inIngs || inNotas || inName;
+        });
+
+        if (matchingVarieties.length > 0) {
+          matchingItems.push({
+            item,
+            matchingVarieties
+          });
+        }
+      });
+
+      if (matchingItems.length === 0) {
+        resultsGrid.innerHTML = `
+          <div class="col-12 text-center py-4 text-muted">
+            <p>No encontramos inciensos con ese ingrediente exacto. Prueba con Canela, Lavanda, Frutilla, Rosa o Vainilla.</p>
+          </div>
+        `;
+        return;
+      }
+
+      matchingItems.forEach(({ item, matchingVarieties }) => {
+        const col = document.createElement('div');
+        col.className = 'col-lg-4 col-md-6';
+        col.innerHTML = `
+          <div class="card-incienso border-success border-opacity-50">
+            <div class="product-img-wrapper" style="height: 200px;" onclick="openBookModal('${item.id}')">
+              <span class="product-format-badge">${item.formato}</span>
+              <img src="${item.imagen}" class="product-img" alt="${item.nombre}">
+              <div class="product-img-overlay"></div>
+            </div>
+            <div class="card-body-incienso">
+              <span class="text-warning small"><i class="fa-solid fa-barcode"></i> Cód: ${item.codigo}</span>
+              <h4 class="product-title" style="cursor: pointer;" onclick="openBookModal('${item.id}')">${item.nombre}</h4>
+              <p class="text-light small fw-bold mb-2">Variedades con ${ingLabel || ingKey}:</p>
+              <div class="fragrance-list mb-3">
+                ${matchingVarieties.map(v => `
+                  <div class="fragrance-item border-success border-opacity-25">
+                    <div class="fragrance-name">
+                      <span>${v.nombre}</span>
+                      <button class="btn btn-sm btn-outline-success py-0 px-2" style="font-size: 0.72rem;" onclick="addToCart('${item.nombre} - ${v.nombre}', '${v.notas}', '${item.codigo}')">
+                        + Pedir
+                      </button>
+                    </div>
+                    <div class="fragrance-notes">${v.notas}</div>
+                  </div>
+                `).join('')}
+              </div>
+              <button class="btn btn-mystic-primary mt-auto" onclick="openBookModal('${item.id}')">
+                <i class="fa-solid fa-book-open"></i> Ver Detalles en Libro
+              </button>
+            </div>
+          </div>
+        `;
+        resultsGrid.appendChild(col);
+      });
+
+      if (typeof anime !== 'undefined') {
+        anime({
+          targets: '#ingredientResultsGrid .card-incienso',
+          translateY: [20, 0],
+          opacity: [0, 1],
+          delay: anime.stagger(40),
+          duration: 400,
+          easing: 'easeOutQuad'
+        });
+      }
+    }
+
+    function clearIngredientFilter() {
+      document.getElementById('ingredientFilteredHeader').classList.add('d-none');
+      document.querySelectorAll('.ingredient-explorer-card').forEach(c => c.classList.remove('selected'));
+      document.getElementById('ingredientResultsGrid').innerHTML = `
+        <div class="col-12 text-center py-4 text-muted">
+          <p>Selecciona cualquier ingrediente de arriba (ejemplo: 🔥 Canela, 🍓 Frutilla Silvestre, 🌿 Lavanda, 🌸 Rosa) para ver los inciensos asociados.</p>
+        </div>
+      `;
+    }
+
+    function filterByIngredientName(ingName) {
+      switchApartado('ingredientes');
+      filterByIngredientId(ingName, ingName);
+      document.getElementById('viewIngredientes').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ==========================================
+    // 3. APARTADOS SWITCHER
+    // ==========================================
+    function switchApartado(apartado) {
+      currentApartado = apartado;
+
+      document.getElementById('tabBtnLibro').classList.toggle('active', apartado === 'libro');
+      document.getElementById('tabBtnBestSeller').classList.toggle('active', apartado === 'bestseller');
+      document.getElementById('tabBtnIngredientes').classList.toggle('active', apartado === 'ingredientes');
+
+      document.getElementById('viewLibro').classList.toggle('d-none', apartado !== 'libro');
+      document.getElementById('viewBestSeller').classList.toggle('d-none', apartado !== 'bestseller');
+      document.getElementById('viewIngredientes').classList.toggle('d-none', apartado !== 'ingredientes');
+
+      if (apartado === 'libro') {
+        applyFilters();
+      } else if (apartado === 'bestseller') {
+        renderBestSellers();
+      } else if (apartado === 'ingredientes') {
+        renderIngredientsExplorer();
+      }
+
+      playMysticChime(432);
+    }
+
+    // Format filter (Tubo / Pouch / Arpillera / Puro)
+    function filterByFormat(format, btnElem) {
+      currentFormatFilter = format;
+      document.querySelectorAll('.filter-bar-container .filter-pill').forEach(b => b.classList.remove('active'));
+      if (btnElem) btnElem.classList.add('active');
+
+      if (currentApartado !== 'libro') {
+        switchApartado('libro');
+      } else {
+        applyFilters();
+      }
+      playMysticChime(528);
+    }
+
+    function handleSearch(term) {
+      if (currentApartado !== 'libro') {
+        switchApartado('libro');
+      }
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const searchTerm = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+
+      let filtered = inciensosData.filter(item => {
+        if (currentFormatFilter !== 'all' && item.formato !== currentFormatFilter) {
+          return false;
+        }
+
+        if (searchTerm) {
+          const matchName = item.nombre.toLowerCase().includes(searchTerm);
+          const matchCode = item.codigo.toLowerCase().includes(searchTerm);
+          const matchDesc = item.descripcion.toLowerCase().includes(searchTerm);
+          const matchVariety = item.variedades.some(v => 
+            v.nombre.toLowerCase().includes(searchTerm) || 
+            v.notas.toLowerCase().includes(searchTerm) ||
+            (v.intencion && v.intencion.toLowerCase().includes(searchTerm)) ||
+            v.ingredientes.some(i => i.toLowerCase().includes(searchTerm))
+          );
+          return matchName || matchCode || matchDesc || matchVariety;
+        }
+
+        return true;
+      });
+
+      renderCatalog(filtered);
+    }
+
+    function resetFilters() {
+      document.getElementById('searchInput').value = '';
+      currentFormatFilter = 'all';
+      document.querySelectorAll('.filter-bar-container .filter-pill').forEach((b, idx) => {
+        b.classList.toggle('active', idx === 0);
+      });
+      applyFilters();
+    }
+
+    // ==========================================
+    // 4. MODAL: "LIBRO DE INCIENSOS" (Grimorio)
+    // ==========================================
+    let bookModalInstance = null;
+    let currentModalItem = null;
+
+    function openBookModal(itemId) {
+      if (!bookModalInstance) {
+        bookModalInstance = new bootstrap.Modal(document.getElementById('bookModal'));
+      }
+
+      const item = inciensosData.find(i => i.id === itemId);
+      if (!item) return;
+      currentModalItem = item;
+
+      document.getElementById('modalTitle').innerText = item.nombre;
+      document.getElementById('modalCode').innerText = `Código Oficial: ${item.codigo}`;
+      document.getElementById('modalFormatBadge').innerText = `FORMATO: ${item.formato.toUpperCase()}`;
+      document.getElementById('modalDescription').innerText = item.descripcion;
+      document.getElementById('modalImage').src = item.imagen;
+      document.getElementById('modalAmuletInfo').innerText = item.amuleto || "Incluye soporte porta-incienso artesanal.";
+      document.getElementById('modalIntentionText').innerText = item.intencion || "Armonía, equilibrio de energías y bienestar del hogar.";
+
+      // Populate varieties tab
+      const varietiesList = document.getElementById('modalVarietiesList');
+      varietiesList.innerHTML = '';
+
+      item.variedades.forEach(v => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'grimorio-variety-card mb-2';
+        itemDiv.innerHTML = `
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="text-warning fw-bold fs-6"><i class="fa-solid fa-sparkles me-1"></i> ${v.nombre}</span>
+            <div class="d-flex gap-2">
+              <button class="btn btn-sm btn-outline-success py-1 px-2" title="Consultar aroma directo por WhatsApp" onclick="consultVarietyWhatsApp('${item.nombre.replace(/'/g, "\\'")}', '${v.nombre.replace(/'/g, "\\'")}', '${item.codigo}')">
+                <i class="fa-brands fa-whatsapp"></i>
+              </button>
+              <button class="btn btn-sm btn-outline-warning py-1 px-3" onclick="addToCart('${item.nombre.replace(/'/g, "\\'")} - ${v.nombre.replace(/'/g, "\\'")}', '${v.notas.replace(/'/g, "\\'")}', '${item.codigo}')">
+                <i class="fa-solid fa-plus me-1"></i> Pedir Aroma
+              </button>
+            </div>
+          </div>
+          <div class="text-light small mb-1"><i class="fa-solid fa-wind me-1 text-info"></i> Notas Aromáticas: <em>${v.notas}</em></div>
+          ${v.intencion ? `<div class="text-warning small mb-2" style="font-size: 0.8rem;"><i class="fa-solid fa-heart me-1 text-danger"></i> <strong>Intención:</strong> ${v.intencion}</div>` : ''}
+          <div class="d-flex flex-wrap gap-1">
+            ${v.ingredientes.map(ing => `<span class="badge bg-secondary bg-opacity-50 text-light" style="font-size: 0.72rem;">#${ing}</span>`).join('')}
+          </div>
+        `;
+        varietiesList.appendChild(itemDiv);
+      });
+
+      // Populate photos tab
+      const photosGrid = document.getElementById('modalPhotosGrid');
+      photosGrid.innerHTML = '';
+
+      const photos = (item.fotosReales && item.fotosReales.length > 0) ? item.fotosReales : [item.imagen];
+      document.getElementById('modalPhotoCount').innerText = photos.length;
+
+      photos.forEach((photoSrc, idx) => {
+        const col = document.createElement('div');
+        col.className = 'col-6 col-md-4 col-lg-3';
+        col.innerHTML = `
+          <div class="position-relative overflow-hidden rounded-3 border border-warning border-opacity-35 shadow-sm">
+            <img src="${photoSrc}" class="grimorio-gallery-thumb" alt="${item.nombre} Foto ${idx + 1}" onclick="openLightbox('${photoSrc}', '${item.nombre} - Foto Real ${idx + 1}')">
+            <span class="position-absolute bottom-0 end-0 bg-dark bg-opacity-75 px-2 py-1 text-warning" style="font-size: 0.68rem; border-top-left-radius: 8px;">
+              <i class="fa-solid fa-magnifying-glass-plus"></i> Ver
+            </span>
+          </div>
+        `;
+        photosGrid.appendChild(col);
+      });
+
+      // Reset to Tab 1 (Ficha)
+      switchModalTab('ficha');
+
+      document.getElementById('modalAddAllBtn').onclick = () => {
+        addPackToCart(item.id);
+        bookModalInstance.hide();
+      };
+
+      bookModalInstance.show();
+      playMysticChime(432);
+    }
+
+    function switchModalTab(tabId) {
+      document.getElementById('modalTabBtnFicha').classList.toggle('active', tabId === 'ficha');
+      document.getElementById('modalTabBtnVariedades').classList.toggle('active', tabId === 'variedades');
+      document.getElementById('modalTabBtnFotos').classList.toggle('active', tabId === 'fotos');
+      document.getElementById('modalTabBtnRitual').classList.toggle('active', tabId === 'ritual');
+
+      document.getElementById('modalTabFicha').classList.toggle('d-none', tabId !== 'ficha');
+      document.getElementById('modalTabVariedades').classList.toggle('d-none', tabId !== 'variedades');
+      document.getElementById('modalTabFotos').classList.toggle('d-none', tabId !== 'fotos');
+      document.getElementById('modalTabRitual').classList.toggle('d-none', tabId !== 'ritual');
+
+      playMysticChime(528);
+    }
+
+    // Lightbox modal for fullsize photos
+    let lightboxInstance = null;
+    function openLightbox(src, title) {
+      if (!lightboxInstance) {
+        lightboxInstance = new bootstrap.Modal(document.getElementById('photoLightboxModal'));
+      }
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxTitle').innerText = title || "Foto Real de Tienda";
+      lightboxInstance.show();
+    }
+
+    // ==========================================
+    // 5. SHOPPING CART & WHATSAPP GENERATOR
+    // ==========================================
+    function addToCart(title, notes, code) {
+      cart.push({
+        title,
+        notes,
+        code,
+        id: Date.now() + Math.random()
+      });
+      updateCartUI();
+      showToastNotification(`Agregado a tu ritual: ${title}`);
+      playMysticChime(639);
+    }
+
+    function addPackToCart(itemId) {
+      const item = inciensosData.find(i => i.id === itemId);
+      if (!item) return;
+
+      item.variedades.forEach(v => {
+        cart.push({
+          title: `${item.nombre} - ${v.nombre}`,
+          notes: v.notas,
+          code: item.codigo,
+          id: Date.now() + Math.random()
+        });
+      });
+
+      updateCartUI();
+      showToastNotification(`Se agregó el pack completo de ${item.nombre} (${item.variedades.length} aromas)`);
+      playMysticChime(741);
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      updateCartUI();
+    }
+
+    function clearCart() {
+      cart = [];
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const count = cart.length;
+      document.querySelectorAll('.cart-total-badge').forEach(b => b.innerText = count);
+      document.getElementById('floatingBadge').innerText = count;
+      document.getElementById('cartTotalItems').innerText = `${count} variedades`;
+
+      const container = document.getElementById('cartItemsContainer');
+      const emptyMsg = document.getElementById('emptyCartMessage');
+
+      if (count === 0) {
+        if (emptyMsg) emptyMsg.style.display = 'block';
+        container.innerHTML = `
+          <div class="text-center py-5 text-muted" id="emptyCartMessage">
+            <i class="fa-solid fa-hand-holding-heart fs-1 mb-3 text-secondary opacity-50"></i>
+            <p>Tu ritual está vacío.<br>Agrega inciensos desde el catálogo.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = '';
+      cart.forEach((item) => {
+        const itemRow = document.createElement('div');
+        itemRow.className = 'p-2 rounded-3 bg-dark bg-opacity-75 border border-secondary border-opacity-25 d-flex justify-content-between align-items-center';
+        itemRow.innerHTML = `
+          <div style="max-width: 80%;">
+            <div class="text-warning fw-bold small text-truncate">${item.title}</div>
+            <div class="text-muted" style="font-size: 0.72rem;">Cód: ${item.code} • ${item.notes}</div>
+          </div>
+          <button class="btn btn-sm btn-link text-danger p-1" onclick="removeFromCart(${item.id})" title="Eliminar">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        `;
+        container.appendChild(itemRow);
+      });
+
+      if (typeof anime !== 'undefined') {
+        anime({
+          targets: '#floatingBadge',
+          scale: [1.6, 1],
+          duration: 400,
+          easing: 'easeOutElastic(1, .5)'
+        });
+      }
+    }
+
+    function consultCollectionWhatsApp() {
+      if (!currentModalItem) return;
+      const text = `¡Hola *AC Inciensos Vicuña*! 🌿✨\nQuisiera consultar por la colección *${currentModalItem.nombre}* (Código: ${currentModalItem.codigo}, Formato: ${currentModalItem.formato}). ¿Tienen stock disponible y cuál es su valor? ¡Muchas gracias! 🙏🕯️`;
+      const encoded = encodeURIComponent(text);
+      window.open(`https://wa.me/56933899501?text=${encoded}`, '_blank');
+    }
+
+    function consultVarietyWhatsApp(colName, varName, code) {
+      const text = `¡Hola *AC Inciensos Vicuña*! 🌿✨\nQuisiera consultar por el aroma *${varName}* de la colección *${colName}* (Código: ${code}). ¿Tienen disponibilidad para pedido? ¡Muchas gracias! 🙏🕯️`;
+      const encoded = encodeURIComponent(text);
+      window.open(`https://wa.me/56933899501?text=${encoded}`, '_blank');
+    }
+
+    function sendOrderViaWhatsApp() {
+      if (cart.length === 0) {
+        alert('Por favor agrega al menos un incienso a tu ritual antes de enviar por WhatsApp.');
+        return;
+      }
+
+      let message = `¡Hola *AC Inciensos Vicuña* (+56 9 3389 9501 / @ac_inciensosvicuna)! 🌿✨\nQuisiera realizar un pedido con la siguiente selección de inciensos sagrados:\n\n`;
+
+      cart.forEach((item, idx) => {
+        message += `${idx + 1}. *${item.title}* (Cód: ${item.code})\n   _Notas: ${item.notes}_\n`;
+      });
+
+      message += `\nTotal de variedades: ${cart.length}\n¿Tienen disponibilidad y cómo coordinamos el despacho en Vicuña / Valle de Elqui? ¡Muchas gracias! 🙏🕯️`;
+
+      const encoded = encodeURIComponent(message);
+      window.open(`https://wa.me/56933899501?text=${encoded}`, '_blank');
+    }
+
+    function showToastNotification(text) {
+      let toast = document.getElementById('mysticToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'mysticToast';
+        toast.style.cssText = `
+          position: fixed;
+          top: 80px;
+          right: 20px;
+          background: rgba(12, 34, 33, 0.95);
+          color: #f3e5ab;
+          border: 1px solid #d4af37;
+          border-radius: 12px;
+          padding: 12px 20px;
+          font-size: 0.88rem;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          transform: translateY(-50px);
+          opacity: 0;
+          transition: all 0.3s ease;
+        `;
+        document.body.appendChild(toast);
+      }
+
+      toast.innerHTML = `<i class="fa-solid fa-sparkles text-warning"></i> <span>${text}</span>`;
+      toast.style.transform = 'translateY(0)';
+      toast.style.opacity = '1';
+
+      setTimeout(() => {
+        toast.style.transform = 'translateY(-50px)';
+        toast.style.opacity = '0';
+      }, 2600);
+    }
+
+    // ==========================================
+    // 6. HARMONIC SOUND CHIME (Web Audio API)
+    // ==========================================
+    function toggleMysticSound() {
+      isSoundActive = !isSoundActive;
+      const btn = document.getElementById('soundToggleBtn');
+      const text = document.getElementById('soundBtnText');
+
+      if (isSoundActive) {
+        btn.classList.add('active');
+        text.innerText = 'Sonido Activado';
+        playMysticChime(432);
+        showToastNotification("🔔 Modo Ritual Sonoro activado (432 Hz)");
+      } else {
+        btn.classList.remove('active');
+        text.innerText = 'Cuenco 432Hz';
+        showToastNotification("Silenciado");
+      }
+    }
+
+    function playMysticChime(freq = 432) {
+      if (!isSoundActive) return;
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!audioContext) audioContext = new AudioCtx();
+        if (audioContext.state === 'suspended') audioContext.resume();
+
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioContext.currentTime);
+
+        gain.gain.setValueAtTime(0.001, audioContext.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.18, audioContext.currentTime + 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 1.6);
+
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+
+        osc.start();
+        osc.stop(audioContext.currentTime + 1.6);
+      } catch (e) {
+        console.warn("Audio not supported or permitted", e);
+      }
+    }
+
+    // ==========================================
+    // 7. CANVAS ANIMATION: Mystical Smoke & Stars
+    // ==========================================
+    function initSmokeCanvas() {
+      const canvas = document.getElementById('smokeCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      const particles = [];
+      const particleCount = 55;
+
+      for (let i = 0; i < particleCount; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 2.8 + 0.6,
+          alpha: Math.random() * 0.7 + 0.25,
+          speedY: Math.random() * 0.45 + 0.1,
+          speedX: (Math.random() - 0.5) * 0.35,
+          gold: Math.random() > 0.35
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+
+        particles.forEach(p => {
+          p.y -= p.speedY;
+          p.x += p.speedX;
+
+          if (p.y < 0) {
+            p.y = height + 10;
+            p.x = Math.random() * width;
+          }
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = p.gold 
+            ? `rgba(212, 175, 55, ${p.alpha})`
+            : `rgba(46, 172, 161, ${p.alpha * 0.8})`;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = p.gold ? '#d4af37' : '#2eaca1';
+          ctx.fill();
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    }
+
+    // ==========================================
+    // 8. INITIALIZATION
+    // ==========================================
+    document.addEventListener('DOMContentLoaded', () => {
+      initSmokeCanvas();
+      renderCatalog();
+
+      // Ensure floating buttons hide smoothly when modal or offcanvas opens
+      const bookModalEl = document.getElementById('bookModal');
+      const lightboxEl = document.getElementById('photoLightboxModal');
+      const cartOffcanvasEl = document.getElementById('cartOffcanvas');
+      const dock = document.querySelector('.floating-mystic-dock');
+
+      function hideDock() { if (dock) dock.style.display = 'none'; }
+      function showDock() {
+        if (!document.body.classList.contains('modal-open') && !document.querySelector('.offcanvas.show')) {
+          if (dock) dock.style.display = 'flex';
+        }
+      }
+
+      if (bookModalEl) {
+        bookModalEl.addEventListener('show.bs.modal', hideDock);
+        bookModalEl.addEventListener('hidden.bs.modal', showDock);
+      }
+      if (lightboxEl) {
+        lightboxEl.addEventListener('show.bs.modal', hideDock);
+        lightboxEl.addEventListener('hidden.bs.modal', showDock);
+      }
+      if (cartOffcanvasEl) {
+        cartOffcanvasEl.addEventListener('show.bs.offcanvas', hideDock);
+        cartOffcanvasEl.addEventListener('hidden.bs.offcanvas', showDock);
+      }
+
+      if (typeof anime !== 'undefined') {
+        anime({
+          targets: '.animate-hero',
+          translateY: [30, 0],
+          opacity: [0, 1],
+          delay: anime.stagger(120),
+          duration: 800,
+          easing: 'easeOutCubic'
+        });
+      }
+    });
+  </script>
+</body>
+</html>
